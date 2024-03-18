@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 0 1rem; */
+}
+.header > * {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+.logo {
+  font-weight: 700;
+  font-size: 3rem;
+  color: #17494d;
+}
+
+.header a {
+  text-decoration: none;
+}
+.searchBox {
+  display: flex;
+  background: #f1f1f1;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  margin-right: 4rem;
+}
+.searchBox > input {
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+}
+.searchBox > input:active,
+.searchBox > input:focus {
+  outline: none;
+}
+
+.categories {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.categories a {
+  color: #171520;
+}

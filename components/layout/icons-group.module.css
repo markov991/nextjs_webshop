@@ -1,0 +1,6 @@
+/* .icons {
+  margin-right: 2rem;
+} */
+.icons > * {
+  margin-right: 1rem;
+}
