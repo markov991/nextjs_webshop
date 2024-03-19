@@ -1,0 +1,46 @@
+.heroSection {
+  width: 100%;
+  background-image: url(../../public/adidas-colorful-graffiti.jpg);
+  border-radius: 2rem;
+  overflow: hidden;
+  margin-top: 2rem;
+}
+.heroSectionOverlay {
+  height: 40rem;
+  background: #11111116;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-height: 80%;
+  justify-content: center;
+  background: #dededebe;
+  color: #1b4b66;
+  padding-left: 3rem;
+}
+.heroContent h1 {
+  font-size: 6rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+  margin: 2.5rem 0;
+}
+.heroContent p {
+  font-size: 2.4rem;
+  margin-top: 0;
+  margin-right: 3rem;
+}
+.heroContent button {
+  border: none;
+  border-radius: 5px;
+  background: #1b4b66;
+  padding: 1rem 2.5rem;
+}
+.heroContent a {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #fff;
+}
