@@ -1,0 +1,20 @@
+.productBox_Container {
+  width: 30rem;
+}
+
+.product_Image_Container {
+  border-radius: 10px;
+  overflow: hidden;
+
+  /* width: 100%; */
+}
+.productName {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.productPrice {
+  font-size: 1.6rem;
+  font-weight: bold;
+}

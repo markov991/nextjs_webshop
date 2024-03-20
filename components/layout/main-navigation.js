@@ -20,7 +20,7 @@ export default function MainNavigation() {
       </div>
       <div>
         <div className={classes.searchBox}>
-          <Image src={search} />
+          <Image alt="search icon" src={search} />
           <input placeholder="Search for products" type=" text" />
         </div>
         <IconsGroup />

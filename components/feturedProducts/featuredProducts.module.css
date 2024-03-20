@@ -1,0 +1,24 @@
+.featuredProductsBox {
+  /* display: flex;
+  justify-content: space-between; */
+
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+}
+.featuredProductsHeading {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2.5rem;
+  align-items: center;
+}
+.featuredProductsHeading a {
+  text-decoration: none;
+  color: #1b4b66;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.featuredProductsHeading span {
+  margin-left: 5px;
+}
