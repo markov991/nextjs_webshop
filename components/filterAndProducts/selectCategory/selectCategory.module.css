@@ -1,0 +1,28 @@
+.categorySelection legend {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.categorySelectionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.categorySelectionButtons > button {
+  width: 60%;
+  /* border: 1px #1b4b66 solid; */
+  border: none;
+  border-radius: 5px;
+  padding: 1rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  /* color: #1b4b66; */
+}
+
+.classActive {
+  background: #1b4b66;
+  color: #fff;
+}
+.classInactive {
+  color: #1b4b66;
+}

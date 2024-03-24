@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import HeroSection from "@/components/hero/hero";
-import ProductBox from "@/components/product-box/product-box";
+
 import FeaturedProducts from "@/components/feturedProducts/featuredProducts";
 
 export default function HomePage() {
