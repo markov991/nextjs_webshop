@@ -1,0 +1,16 @@
+.filterName {
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+  /* font-weight: bold; */
+}
+.filterName button {
+  border: none;
+  margin-right: 4rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.listStyling {
+  list-style: none;
+}

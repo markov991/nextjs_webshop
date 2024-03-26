@@ -1,0 +1,52 @@
+.max_price_input {
+  transform: rotateY(180deg);
+}
+
+.priceFilterNameBox {
+  display: flex;
+  font-size: 1.6rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+
+  /* border-bottom: 1px solid #9f9f9f; */
+  margin-bottom: 2rem;
+}
+.priceFilterNameBox > button {
+  border: none;
+  margin-right: 4rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.priceFilterNameBox {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+}
+.availablePriceRange {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.2rem;
+}
+.rangeSliderBox {
+  min-height: 20rem;
+  width: 85%;
+  margin-top: 2rem;
+}
+.trackClassPriceRange {
+  /* width: 80%; */
+
+  height: 5px;
+  background: rgb(154, 154, 154);
+  border-radius: 100px;
+}
+.thumbPriceRange {
+  font-size: 1.4rem;
+  padding: 3px;
+  border-radius: 1000px;
+  color: #fff;
+  background: #1b4b66;
+  cursor: pointer;
+  transform: translate(0, -10px);
+}
+/* .thumbPriceRange */
