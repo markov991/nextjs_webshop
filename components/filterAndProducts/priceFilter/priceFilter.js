@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./priceFilter.module.css";
 import ReactSlider from "react-slider";
 
-export default function PriceFilter() {
+export default function PriceFilter({ minPrice, maxPrice }) {
   const [expandPriceRangeFilter, setExpandPriceRangeFilter] = useState(false);
-  const [minPrice, setMinPrice] = useState();
-  const [maxPrice, setMaxPrice] = useState();
-  const [value, setValue] = useState([25, 50]);
+  // const [minPrice, setMinPrice] = useState();
+  // const [maxPrice, setMaxPrice] = useState();
+  const [value, setValue] = useState([minPrice, maxPrice]);
+  useEffect(() => {
+    setValue([minPrice, maxPrice]);
+    console.log(value);
+  }, [minPrice, maxPrice]);
   return (
     <div className={classes.priceFilterBox}>
       <div className={classes.priceFilterNameBox}>
@@ -20,13 +24,13 @@ export default function PriceFilter() {
       {expandPriceRangeFilter && (
         <div>
           <div className={classes.availablePriceRange}>
-            <span>9$ </span>
-            <span>250$</span>
+            <span>{minPrice}$ </span>
+            <span>{maxPrice}$</span>
           </div>
           <div className={classes.rangeSliderBox}>
             <ReactSlider
-              min={9}
-              max={250}
+              min={minPrice}
+              max={maxPrice}
               value={value}
               onAfterChange={(value, index) => {
                 console.log(

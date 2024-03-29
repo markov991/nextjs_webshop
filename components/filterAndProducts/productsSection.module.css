@@ -1,0 +1,50 @@
+.productsSortOptionsBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 1.4rem;
+  gap: 1rem;
+}
+.sortOptionsBox {
+  position: relative;
+  width: 15rem;
+}
+.activeSortValue {
+  border: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  width: 100%;
+}
+.activeSortValue :last-child {
+  /* margin-right: 1rem; */
+
+  position: absolute;
+  right: 1rem;
+}
+/* .sortOptionsBox button {
+  background: transparent;
+} */
+.sortOptions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  left: 0;
+  gap: 1rem;
+
+  background: rgb(240, 240, 240);
+  padding-bottom: 1rem;
+  border-radius: 0 0 3px 3px;
+}
+.sortOptions > button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.ascToggleBtn {
+  border: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}

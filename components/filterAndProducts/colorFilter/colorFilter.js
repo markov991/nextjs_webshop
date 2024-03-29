@@ -1,19 +1,8 @@
 import { useState, useEffect } from "react";
 import classes from "./colorFilter.module.css";
 
-export default function ColorFilter() {
-  const [colorsFilter, setColorsFilter] = useState([]);
-
+export default function ColorFilter({ colors }) {
   const [expended, setExpended] = useState(false);
-
-  useEffect(() => {
-    fetch("/api/getAllFilters")
-      .then((response) => response.json())
-      .then((data) => {
-        setColorsFilter(data.filters.colors);
-        console.log("Marko", data.filters.colors);
-      });
-  }, []);
 
   return (
     <div>
@@ -25,7 +14,7 @@ export default function ColorFilter() {
       </div>
       {expended && (
         <ul className={classes.listStyling}>
-          {colorsFilter.map((color) => (
+          {colors.map((color) => (
             <li>
               <input name={color} id={color} type="checkbox" />
               <label htmlFor={color}>{color}</label>
