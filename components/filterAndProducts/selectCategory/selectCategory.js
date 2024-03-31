@@ -11,7 +11,6 @@ export default function SelectCategory() {
     setSelectedCategory(category);
 
     router.push(`/categories/${category}`);
-    console.log(category, router.query);
   };
   return (
     <div className={classes.categorySelection}>

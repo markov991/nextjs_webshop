@@ -25,12 +25,12 @@ const DUMMY_PRODUCT = {
 };
 
 export default function ProductBox({ product }) {
-  const [imageLocation, setImageLocation] = useState("");
+  // const [imageLocation, setImageLocation] = useState("");
 
-  useEffect(() => {
-    const productImage = product.images.split("~")[0];
-    setImageLocation(productImage);
-  }, []);
+  // useEffect(() => {
+  //   const productImage = product.images.split("~")[0];
+  //   setImageLocation(productImage);
+  // }, []);
 
   return (
     <div className={classes.productBox_Container}>
@@ -38,8 +38,8 @@ export default function ProductBox({ product }) {
         <Image
           width={300}
           height={300}
-          alt={DUMMY_PRODUCT.name}
-          src={imageLocation}
+          alt={product.name}
+          src={product.images[0]}
         />
       </div>
       <div className={classes.productName}>

@@ -4,12 +4,10 @@ import ReactSlider from "react-slider";
 
 export default function PriceFilter({ minPrice, maxPrice }) {
   const [expandPriceRangeFilter, setExpandPriceRangeFilter] = useState(false);
-  // const [minPrice, setMinPrice] = useState();
-  // const [maxPrice, setMaxPrice] = useState();
+
   const [value, setValue] = useState([minPrice, maxPrice]);
   useEffect(() => {
     setValue([minPrice, maxPrice]);
-    console.log(value);
   }, [minPrice, maxPrice]);
   return (
     <div className={classes.priceFilterBox}>
