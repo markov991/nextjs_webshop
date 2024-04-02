@@ -15,7 +15,7 @@ export default function ColorFilter({ colors }) {
       {expended && (
         <ul className={classes.listStyling}>
           {colors.map((color) => (
-            <li>
+            <li key={color}>
               <input name={color} id={color} type="checkbox" />
               <label htmlFor={color}>{color}</label>
             </li>

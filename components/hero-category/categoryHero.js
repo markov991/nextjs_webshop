@@ -7,7 +7,11 @@ import classes from "./categoryHero.module.css";
 export default function CategoryHero() {
   return (
     <section className={classes.callToActionSection}>
-      <Image src={discount} height={400} />
+      <Image
+        alt="Picture with word DISCOUNT on it."
+        src={discount}
+        height={400}
+      />
       <div className={classes.callToActionBox}>
         <h2>
           <span>Save some money</span>
