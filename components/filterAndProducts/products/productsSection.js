@@ -1,11 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./productsSection.module.css";
+import ProductItem from "./productItem";
 
-export default function ProductsSection() {
+export default function ProductsSection({ products }) {
+  const [displayedProducts, setDisplayedProducts] = useState([]);
+  useEffect(() => {
+    setDisplayedProducts(products);
+    console.log(products);
+  }, [products]);
+
   const [toggleProductSortOptions, setToggleProductSortOptions] =
     useState(false);
   const [productSortValue, setProductSortValue] = useState("Default");
   const [productSortAscending, setProductSortAscending] = useState(true);
+
+  useEffect(() => {
+    if (productSortValue === "Name") {
+      const sortedProducts = [...displayedProducts].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setDisplayedProducts(
+        productSortAscending ? sortedProducts : sortedProducts.reverse()
+      );
+    }
+  }, [productSortValue, productSortAscending]);
 
   return (
     <div className={classes.productsSection}>
@@ -69,7 +87,11 @@ export default function ProductsSection() {
           {productSortAscending ? <>&uarr;</> : <>&darr;</>}{" "}
         </button>
       </div>
-      <div>products</div>
+      <div className={classes.productListSection}>
+        {displayedProducts.map((product) => (
+          <ProductItem product={product} />
+        ))}
+      </div>
     </div>
   );
 }

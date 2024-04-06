@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const document = await getAllFilters(client);
-    console.log(document);
+
     res.status(200).json({ filters: document });
   }
 }
