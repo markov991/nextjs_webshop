@@ -23,6 +23,25 @@ export default function ProductsSection({ products }) {
         productSortAscending ? sortedProducts : sortedProducts.reverse()
       );
     }
+    if (productSortValue === "Price") {
+      const sortedProducts = [...displayedProducts].sort(
+        (a, b) => a.selling_price - b.selling_price
+      );
+      setDisplayedProducts(
+        productSortAscending ? sortedProducts : sortedProducts.reverse()
+      );
+    }
+    if (productSortValue === "Rating") {
+      const sortedProducts = [...displayedProducts].sort(
+        (a, b) => a.average_rating - b.average_rating
+      );
+      setDisplayedProducts(
+        productSortAscending ? sortedProducts : sortedProducts.reverse()
+      );
+    }
+    if (productSortValue === "Default") {
+      setDisplayedProducts(products);
+    }
   }, [productSortValue, productSortAscending]);
 
   return (
@@ -84,7 +103,7 @@ export default function ProductsSection({ products }) {
             setProductSortAscending(!productSortAscending);
           }}
         >
-          {productSortAscending ? <>&uarr;</> : <>&darr;</>}{" "}
+          {productSortAscending ? <>&darr;</> : <>&uarr;</>}{" "}
         </button>
       </div>
       <div className={classes.productListSection}>

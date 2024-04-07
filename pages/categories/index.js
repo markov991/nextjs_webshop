@@ -5,18 +5,18 @@ import FilterAndProductsSection from "@/components/filterAndProducts/filterAndPr
 
 import CategoryHero from "@/components/hero-category/categoryHero";
 import CategoryBredCrumbs from "@/components/categoryBredCrumbs/categoryBredCrumbs";
-// import { connectToDatabase, getAllProducts } from "@/lib/db";
 
 export default function CategoriesPage(props) {
+  const [counter, setCounter] = useState(0);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch("/api/getAllProducts")
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data.products);
+        setProducts([...products, ...data.products]);
       });
-  }, []);
+  }, [counter]);
   // const { products } = props;
 
   console.log(props);
@@ -27,21 +27,7 @@ export default function CategoriesPage(props) {
 
       <h1>All categories</h1>
       <FilterAndProductsSection products={products} />
+      <button onClick={() => setCounter(counter + 1)}>LOAD MORE</button>
     </main>
   );
 }
-
-// export async function getStaticProps() {
-//   // const response = await fetch("/api/getAllProducts");
-//   const client = await connectToDatabase();
-//   const response = await getAllProducts(client);
-//   // const data = await response.json();
-
-//   return {
-//     props: {
-//       products: response,
-//     },
-//     revalidate: 600,
-//     // fallback:
-//   };
-// }
