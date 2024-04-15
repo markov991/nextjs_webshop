@@ -16,4 +16,5 @@ export default async function handler(req, res) {
     const document = await getRandomProducts(client);
     res.status(200).json({ products: document });
   }
+  client.close();
 }

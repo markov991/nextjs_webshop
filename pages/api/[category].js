@@ -1,8 +1,11 @@
 import { connectToDatabase, getAllProducts } from "@/lib/db";
 
 export default async function handler(req, res) {
-  const x = req.query;
-  console.log(x);
+ 
+  const { category } = req.query;
+  const { page } = req.query;
+
+ 
   let client;
 
   try {
@@ -13,7 +16,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const allProducts = await getAllProducts(client, 0);
+    const allProducts = await getAllProducts(client, page, category);
     res.status(200).json({ products: allProducts });
   }
   client.close();
