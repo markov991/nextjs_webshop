@@ -108,7 +108,7 @@ export default function ProductsSection({ products }) {
       </div>
       <div className={classes.productListSection}>
         {displayedProducts.map((product) => (
-          <ProductItem product={product} />
+          <ProductItem key={product._id} product={product} />
         ))}
       </div>
     </div>

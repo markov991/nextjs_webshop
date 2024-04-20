@@ -1,14 +1,25 @@
 import { useState, useEffect } from "react";
 import classes from "./priceFilter.module.css";
 import ReactSlider from "react-slider";
+import { filterSliceActions } from "@/store/filtersSlice";
+import { useDispatch } from "react-redux";
 
 export default function PriceFilter({ minPrice, maxPrice }) {
+  const dispatch = useDispatch();
   const [expandPriceRangeFilter, setExpandPriceRangeFilter] = useState(false);
 
   const [value, setValue] = useState([minPrice, maxPrice]);
   useEffect(() => {
     setValue([minPrice, maxPrice]);
   }, [minPrice, maxPrice]);
+
+  useEffect(() => {
+    dispatch(
+      filterSliceActions.changePriceRangeParams({
+        priceRange: value,
+      })
+    );
+  }, [value]);
   return (
     <div className={classes.priceFilterBox}>
       <div className={classes.priceFilterNameBox}>

@@ -5,12 +5,19 @@ import FilterAndProductsSection from "@/components/filterAndProducts/filterAndPr
 
 import CategoryHero from "@/components/hero-category/categoryHero";
 import CategoryBredCrumbs from "@/components/categoryBredCrumbs/categoryBredCrumbs";
+import { useSelector } from "react-redux";
 
 export default function CategoriesPages() {
   const router = useRouter();
   const eventId = router.query.category;
   const [counter, setCounter] = useState(0);
   const [products, setProducts] = useState([]);
+  const filters = useSelector((state) => state.filter);
+  console.log(filters);
+
+  useEffect(() => {
+    console.log(filters);
+  }, [filters]);
 
   useEffect(() => {
     if (eventId) {
