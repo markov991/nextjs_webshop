@@ -3,15 +3,16 @@ import { useRouter } from "next/router";
 
 import classes from "./selectCategory.module.css";
 
-export default function SelectCategory() {
-  const [selectedCategory, setSelectedCategory] = useState("");
+export default function SelectCategory({ category }) {
+  const [selectedCategory, setSelectedCategory] = useState(category.category);
   const router = useRouter();
-
+  console.log(category);
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
 
     router.push(`/categories/${category}`);
   };
+
   return (
     <div className={classes.categorySelection}>
       <legend>Category:</legend>

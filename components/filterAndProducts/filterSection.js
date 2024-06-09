@@ -6,7 +6,7 @@ import classes from "./filterSection.module.css";
 import PriceFilter from "./priceFilter/priceFilter";
 import SelectCategory from "./selectCategory/selectCategory";
 
-export default function FilterSection() {
+export default function FilterSection(category) {
   const [colorsFilter, setColorsFilter] = useState([]);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
@@ -24,7 +24,7 @@ export default function FilterSection() {
   }, []);
   return (
     <div className={classes.filterSection}>
-      <SelectCategory />
+      <SelectCategory category={category} />
       <ColorFilter colors={colorsFilter} />
       <PriceFilter minPrice={minPrice} maxPrice={maxPrice} />
     </div>

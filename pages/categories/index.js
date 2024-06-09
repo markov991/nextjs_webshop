@@ -20,7 +20,7 @@ export default function CategoriesPage(props) {
   // const { products } = props;
   const loadMoreHandler = () => {
     setCounter(counter + 1);
-    fetch(`/api/allProducts?page=${counter + 1}`)
+    fetch(`/api/getAllProducts?page=${counter + 1}`)
       .then((response) => response.json())
       .then((data) => {
         setProducts([...products, ...data.products]);

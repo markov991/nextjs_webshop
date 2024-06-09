@@ -1,11 +1,9 @@
-import { connectToDatabase, getAllProducts } from "@/lib/db";
+import { connectToDatabase, getProductsFromCategory } from "@/lib/db";
 
 export default async function handler(req, res) {
- 
   const { category } = req.query;
   const { page } = req.query;
 
- 
   let client;
 
   try {
@@ -16,7 +14,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const allProducts = await getAllProducts(client, page, category);
+    const allProducts = await getProductsFromCategory(client, page, category);
     res.status(200).json({ products: allProducts });
   }
   client.close();

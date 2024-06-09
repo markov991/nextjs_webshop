@@ -44,7 +44,7 @@ export default function CategoriesPages() {
       <CategoryBredCrumbs />
 
       <h1>All categories</h1>
-      <FilterAndProductsSection products={products} />
+      <FilterAndProductsSection category={eventId} products={products} />
       <button onClick={loadMoreHandler}>LOAD MORE</button>
     </main>
   );
