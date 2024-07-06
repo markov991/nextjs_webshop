@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const filterSlice = createSlice({
   name: "filter",
   initialState: {
-    pickedColor: ["red"],
+    pickedColor: [],
     priceRange: [0, 240],
   },
   reducers: {

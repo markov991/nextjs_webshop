@@ -15,9 +15,9 @@ export default function CategoriesPages() {
   const filters = useSelector((state) => state.filter);
   console.log(filters);
 
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
+  // useEffect(() => {
+  //   console.log(filters);
+  // }, [filters]);
 
   useEffect(() => {
     if (eventId) {
