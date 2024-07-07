@@ -15,32 +15,38 @@ export default function CategoriesPage(props) {
 
   useEffect(() => {
     setCounter(0);
-    fetch(`/api/getAllProducts?page=0&colorFilter=${filters.pickedColor}`)
+    fetch(
+      `/api/getAllProducts?page=0&colorFilter=${filters.pickedColor}&priceFilter=${filters.priceRange}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setProducts([...data.products]);
       });
-    console.log(filters);
   }, [filters]);
 
-  useEffect(() => {
-    fetch("/api/getAllProducts")
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts([...data.products]);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(
+  //     `/api/getAllProducts?page=0&colorFilter=${filters.pickedColor}&priceFilter=${filters.priceRange}`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setProducts([...data.products]);
+  //     });
+  // }, []);
   // const { products } = props;
   const loadMoreHandler = () => {
     setCounter(counter + 1);
-    fetch(`/api/getAllProducts?page=${counter + 1}`)
+    fetch(
+      `/api/getAllProducts?page=${counter + 1}&colorFilter=${
+        filters.pickedColor
+      }&priceFilter=${filters.priceRange}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setProducts([...products, ...data.products]);
       });
   };
 
-  console.log(props);
   return (
     <main className={classes.categoriesSection}>
       <CategoryHero />

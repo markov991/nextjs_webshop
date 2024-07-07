@@ -2,8 +2,8 @@ import { connectToDatabase, getAllProducts } from "@/lib/db";
 
 export default async function handler(req, res) {
   const { page } = req.query;
-  const { colorFilter } = req.query;
-  console.log("ColorFilter:", colorFilter);
+  const { colorFilter, priceFilter } = req.query;
+  const convertedPriceFilter = priceFilter.split(",");
 
   let client;
 
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const allProducts = await getAllProducts(client, page, {
       colorFilter: colorFilter,
-      priceFilter: [],
+      priceFilter: [+convertedPriceFilter[0], +convertedPriceFilter[1]],
     });
     res.status(200).json({ products: allProducts });
   }

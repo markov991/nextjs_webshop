@@ -13,25 +13,26 @@ export default function CategoriesPages() {
   const [counter, setCounter] = useState(0);
   const [products, setProducts] = useState([]);
   const filters = useSelector((state) => state.filter);
-  console.log(filters);
-
-  // useEffect(() => {
-  //   console.log(filters);
-  // }, [filters]);
 
   useEffect(() => {
     if (eventId) {
-      fetch(`/api/${eventId}?page=${counter}`)
+      fetch(
+        `/api/${eventId}?page=0&colorFilter=${filters.pickedColor}&priceFilter=${filters.priceRange}`
+      )
         .then((response) => response.json())
         .then((data) => {
           setProducts([...data.products]);
         });
     }
-  }, [eventId]);
+  }, [eventId, filters]);
 
   const loadMoreHandler = () => {
     setCounter(counter + 1);
-    fetch(`/api/${eventId}?page=${counter + 1}`)
+    fetch(
+      `/api/${eventId}?page=${counter + 1}&colorFilter=${
+        filters.pickedColor
+      }&priceFilter=${filters.priceRange}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setProducts([...products, ...data.products]);
