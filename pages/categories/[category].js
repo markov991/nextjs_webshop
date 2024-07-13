@@ -42,7 +42,7 @@ export default function CategoriesPages() {
   return (
     <main className={classes.categoriesSection}>
       <CategoryHero />
-      <CategoryBredCrumbs />
+      <CategoryBredCrumbs category={eventId} />
 
       <h1>All categories</h1>
       <FilterAndProductsSection category={eventId} products={products} />

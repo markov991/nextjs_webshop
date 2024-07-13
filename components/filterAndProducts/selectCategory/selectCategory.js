@@ -4,12 +4,9 @@ import { useRouter } from "next/router";
 import classes from "./selectCategory.module.css";
 
 export default function SelectCategory({ category }) {
-  const [selectedCategory, setSelectedCategory] = useState(category.category);
   const router = useRouter();
-  console.log(category);
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
 
+  const handleCategoryChange = (category) => {
     router.push(`/categories/${category}`);
   };
 
@@ -19,7 +16,7 @@ export default function SelectCategory({ category }) {
       <div className={classes.categorySelectionButtons}>
         <button
           className={`${
-            selectedCategory === "Clothing"
+            category.category === "Clothing"
               ? classes.classActive
               : classes.classInactive
           }`}
@@ -29,7 +26,7 @@ export default function SelectCategory({ category }) {
         </button>
         <button
           className={`${
-            selectedCategory === "Shoes"
+            category.category === "Shoes"
               ? classes.classActive
               : classes.classInactive
           }`}
@@ -39,7 +36,7 @@ export default function SelectCategory({ category }) {
         </button>
         <button
           className={`${
-            selectedCategory === "Accessories"
+            category.category === "Accessories"
               ? classes.classActive
               : classes.classInactive
           }`}
