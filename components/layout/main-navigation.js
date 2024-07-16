@@ -13,9 +13,9 @@ export default function MainNavigation() {
           ADIDAS
         </Link>
         <nav className={classes.categories}>
-          <Link href="/categories/clothing">CLOTHING</Link>
-          <Link href="/categories/shoes">SHOES</Link>
-          <Link href="/categories/accessories">ACCESSORIES</Link>
+          <Link href="/categories/Clothing">CLOTHING</Link>
+          <Link href="/categories/Shoes">SHOES</Link>
+          <Link href="/categories/Accessories">ACCESSORIES</Link>
         </nav>
       </div>
       <div>
