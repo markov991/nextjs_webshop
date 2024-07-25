@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import classes from "./categoryBredCrumbs.module.css";
 
-export default function CategoryBredCrumbs({ category }) {
+export default function CategoryBredCrumbs({ category, productName }) {
   console.log(category);
   return (
     <div className={classes.bredCrumbs}>
@@ -15,6 +15,12 @@ export default function CategoryBredCrumbs({ category }) {
         <>
           <span>&gt;</span>
           <Link href={`/categories/${category}`}>{category}</Link>
+        </>
+      )}
+      {productName && (
+        <>
+          <span>&gt;</span>
+          <span>{productName}</span>
         </>
       )}
     </div>

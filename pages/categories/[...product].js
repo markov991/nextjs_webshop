@@ -1,5 +1,9 @@
 import React from "react";
 import { connectToDatabase, getProductDetails, getAllPaths } from "@/lib/db";
+import CategoryBredCrumbs from "@/components/categoryBredCrumbs/categoryBredCrumbs";
+import ProductImagesSlider from "@/components/productPageComponents/productImagesSlider/productImagesSlider";
+import ProductInfoSection from "@/components/productPageComponents/productInfoSection/productInfoSection";
+import ImagesAndNameSection from "@/components/layout/imagesAndNameSection";
 
 export default function ProductPage(props) {
   const {
@@ -20,7 +24,19 @@ export default function ProductPage(props) {
 
   return (
     <>
-      <div>{name}</div>
+      <CategoryBredCrumbs category={category} productName={name} />
+      <main>
+        <ImagesAndNameSection>
+          <ProductImagesSlider imagesArray={images} />
+          <ProductInfoSection
+            name={name}
+            avg_rating={average_rating}
+            rating_count={reviews_count}
+            price={selling_price}
+          />
+        </ImagesAndNameSection>
+        <section></section>
+      </main>
     </>
   );
 }

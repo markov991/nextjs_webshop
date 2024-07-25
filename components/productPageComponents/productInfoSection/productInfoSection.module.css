@@ -1,0 +1,13 @@
+.nameAndPrice {
+  border-bottom: 1px solid #000;
+  padding-bottom: 2rem;
+  margin-bottom: 10rem;
+  font-size: 1.6rem;
+}
+.nameAndPrice h1 {
+  font-size: 3.4rem;
+}
+.price {
+  font-size: 5.2rem;
+  font-weight: bold;
+}

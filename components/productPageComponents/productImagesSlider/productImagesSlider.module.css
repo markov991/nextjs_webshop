@@ -1,0 +1,28 @@
+.imageSliderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.mainImageBox {
+  display: flex;
+  align-items: center;
+  width: 80%;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+}
+.selectProductImageBox {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.selectProductImageBox > button {
+  font-size: 3rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
