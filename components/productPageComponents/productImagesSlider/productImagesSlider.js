@@ -36,19 +36,21 @@ export default function ProductImagesSlider({ imagesArray }) {
         <button onClick={prevImageHandler}>
           <span>&lt;</span>
         </button>
-        {imagesArray.map((image, index) => {
-          return (
-            <Image
-              onClick={() => {
-                setActiveImage(index);
-              }}
-              src={image}
-              width={75}
-              height={75}
-              alt="Product image"
-            />
-          );
-        })}
+        <div className={classes.imageOptionBox}>
+          {imagesArray.map((image, index) => {
+            return (
+              <Image
+                onClick={() => {
+                  setActiveImage(index);
+                }}
+                src={image}
+                width={75}
+                height={75}
+                alt="Product image"
+              />
+            );
+          })}
+        </div>
         <button onClick={nextImageHandler}>
           <span>&gt;</span>
         </button>

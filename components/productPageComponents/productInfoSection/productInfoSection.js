@@ -1,4 +1,6 @@
 import React from "react";
+import StarRatingDisplay from "@/components/starRatingDisplay/starRatingDisplay";
+
 import classes from "./productInfoSection.module.css";
 
 export default function ProductInfoSection({
@@ -11,8 +13,12 @@ export default function ProductInfoSection({
     <div className={classes.nameAndPrice}>
       <h1>{name}</h1>
       <div>
-        <span>{avg_rating}</span>
-        <span>({rating_count})</span>
+        <StarRatingDisplay avgRating={avg_rating} />
+
+        <div>
+          <span>({rating_count})</span>
+          <span>Ratings</span>
+        </div>
       </div>
       <div className={classes.price}>${price.toFixed(2)}</div>
     </div>
