@@ -1,3 +1,6 @@
+.productDescriptionSectionBox {
+  margin-bottom: 10rem;
+}
 .nameAndPrice {
   padding-bottom: 2rem;
   /* margin-bottom: 10rem; */
@@ -11,4 +14,14 @@
   font-weight: bold;
   padding-bottom: 2rem;
   border-bottom: 1px solid #d9d9d9;
+}
+.ratingsAndRevives {
+  display: flex;
+  color: #b6b6b6;
+}
+.numOfRevives {
+  margin-left: 2rem;
+}
+.numOfRevives :first-child {
+  margin-right: 0.5rem;
 }

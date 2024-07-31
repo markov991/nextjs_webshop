@@ -4,6 +4,7 @@ import CategoryBredCrumbs from "@/components/categoryBredCrumbs/categoryBredCrum
 import ProductImagesSlider from "@/components/productPageComponents/productImagesSlider/productImagesSlider";
 import ProductInfoSection from "@/components/productPageComponents/productInfoSection/productInfoSection";
 import ImagesAndNameSection from "@/components/layout/imagesAndNameSection";
+import ProductDescriptionSection from "@/components/productDescriptionSection/productDescriptionSection";
 
 export default function ProductPage(props) {
   const {
@@ -35,7 +36,12 @@ export default function ProductPage(props) {
             price={selling_price}
           />
         </ImagesAndNameSection>
-        <section></section>
+        <ProductDescriptionSection
+          price={selling_price}
+          color={color}
+          category={category}
+          description={description}
+        />
       </main>
     </>
   );

@@ -12,10 +12,10 @@ export default function ProductInfoSection({
   return (
     <div className={classes.nameAndPrice}>
       <h1>{name}</h1>
-      <div>
+      <div className={classes.ratingsAndRevives}>
         <StarRatingDisplay avgRating={avg_rating} />
 
-        <div>
+        <div className={classes.numOfRevives}>
           <span>({rating_count})</span>
           <span>Ratings</span>
         </div>
