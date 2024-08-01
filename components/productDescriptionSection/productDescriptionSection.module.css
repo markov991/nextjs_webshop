@@ -1,3 +1,6 @@
+.productDescriptionSectionBox {
+  margin-bottom: 10rem;
+}
 .btnBox {
   display: flex;
   column-gap: 3rem;

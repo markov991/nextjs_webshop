@@ -73,7 +73,7 @@ export default function ProductDescriptionSection({
         </button>
       </div>
       {activeButton === "PRODUCT_DETAILS" && (
-        <div className={classes.productDescription}>{description}</div>
+        <p className={classes.productDescription}>{description}</p>
       )}
       {activeButton === "RELATED_PRODUCTS" && (
         <div className={classes.relatedProductsBox}>

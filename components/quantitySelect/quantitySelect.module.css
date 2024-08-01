@@ -1,0 +1,23 @@
+.quantitySelectComponentBox {
+  display: flex;
+  gap: 2rem;
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+.quantitySelectComponentBox > span {
+  font-weight: bold;
+}
+
+.quantityInputBox {
+  border: 1px solid #1b4b66;
+  border-radius: 3px;
+  display: flex;
+  gap: 1rem;
+}
+.quantityInputBox button {
+  background: transparent;
+  border: none;
+}
+.quantityInputBox button:hover {
+  cursor: pointer;
+}
