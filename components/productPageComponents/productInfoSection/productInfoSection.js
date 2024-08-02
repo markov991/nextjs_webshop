@@ -2,8 +2,9 @@ import React from "react";
 import StarRatingDisplay from "@/components/starRatingDisplay/starRatingDisplay";
 
 import classes from "./productInfoSection.module.css";
-import CouponBox from "@/components/cuponBox/couponBox";
+import CouponBox from "@/components/couponBox/couponBox";
 import QuantitySelect from "@/components/quantitySelect/quantitySelect";
+import ProductPageBtns from "@/components/productPageBtns/productPageBtns";
 
 export default function ProductInfoSection({
   name,
@@ -25,6 +26,7 @@ export default function ProductInfoSection({
       <div className={classes.price}>${price.toFixed(2)}</div>
       <CouponBox />
       <QuantitySelect />
+      <ProductPageBtns />
     </div>
   );
 }
