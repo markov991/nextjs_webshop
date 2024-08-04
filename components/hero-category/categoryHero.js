@@ -19,7 +19,7 @@ export default function CategoryHero() {
         </h2>
         <div>
           <button>
-            <Link href="/auth">SIGN UP</Link>
+            <Link href="/register">SIGN UP</Link>
           </button>
         </div>
       </div>
