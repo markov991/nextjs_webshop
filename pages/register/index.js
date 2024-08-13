@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import classes from "./index.module.css";
 
@@ -24,12 +26,13 @@ async function createUser(firstName, lastName, email, password) {
 }
 
 export default function RegisterPage() {
+  const router = useRouter();
   const refFirstName = useRef();
   const refLastName = useRef();
   const refEmail = useRef();
   const refPassword = useRef();
 
-  const handleRegisterAccount = (e) => {
+  async function handleRegisterAccount(e) {
     e.preventDefault();
     const enteredFirstName = refFirstName.current.value;
     const enteredLastName = refLastName.current.value;
@@ -45,17 +48,20 @@ export default function RegisterPage() {
       alert("Something went wrong");
     } else {
       try {
-        createUser(
+        const user = await createUser(
           enteredFirstName,
           enteredLastName,
           enteredEmail,
           enteredPassword
         );
+        if (user) {
+          router.replace("/login");
+        }
       } catch (error) {
         console.log(error);
       }
     }
-  };
+  }
   return (
     <div className={classes.registerPageContainer}>
       <div className={classes.twoGridCenter}>
@@ -116,4 +122,18 @@ export default function RegisterPage() {
       </div>
     </div>
   );
+}
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+  if (session) {
+    return {
+      redirect: {
+        destination: "/profile",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { session },
+  };
 }

@@ -1,17 +1,29 @@
 import React, { useRef } from "react";
-import classes from "./index.module.css";
+import { getSession, signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import classes from "./index.module.css";
 
 export default function Index() {
   const refEmail = useRef();
   const refPassword = useRef();
+  const router = useRouter();
 
-  const logInHandler = (e) => {
+  async function logInHandler(e) {
     e.preventDefault();
 
     const enteredEmail = refEmail.current.value;
     const enteredPassword = refPassword.current.value;
-  };
+
+    const result = await signIn("credentials", {
+      email: enteredEmail,
+      password: enteredPassword,
+      redirect: false,
+    });
+    if (result.ok) {
+      router.replace("/profile");
+    }
+  }
   return (
     <div className={classes.logInContainer}>
       <div className={classes.twoGridCenter}>
@@ -48,4 +60,19 @@ export default function Index() {
       </div>
     </div>
   );
+}
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+  if (session) {
+    return {
+      redirect: {
+        destination: "/profile",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
 }
