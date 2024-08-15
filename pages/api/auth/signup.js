@@ -37,6 +37,22 @@ export default async function handler(req, res) {
     email: email,
     password: hashedPassword,
   });
+  const user = await db.collection("usersDb").insertOne({
+    email: email,
+    firstName: firstName,
+    lastName: lastName,
+    dateOfBirthday: null,
+    address: {
+      state: null,
+      city: null,
+      streetAddress: null,
+      pinCode: null,
+      mobileNumber: null,
+    },
+    orders: [],
+    wishlist: [],
+    reviews: [],
+  });
   res.status(201).json({ message: "Created user" });
   client.close();
 }
