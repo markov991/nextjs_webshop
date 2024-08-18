@@ -6,7 +6,9 @@ import ProductInfoSection from "@/components/productPageComponents/productInfoSe
 import ImagesAndNameSection from "@/components/layout/imagesAndNameSection";
 import ProductDescriptionSection from "@/components/productDescriptionSection/productDescriptionSection";
 
-export default function ProductPage(props) {
+export default function ProductPage({ productDetails }) {
+  console.log(productDetails);
+
   const {
     name,
     category,
@@ -19,9 +21,7 @@ export default function ProductPage(props) {
     selling_price,
     reviews_count,
     availability,
-  } = props.productDetails;
-
-  console.log(props);
+  } = productDetails;
 
   return (
     <>

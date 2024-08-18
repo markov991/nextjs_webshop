@@ -1,0 +1,67 @@
+.personalInfoContainer label {
+  font-size: 1.6rem;
+}
+
+.personalInfoContainer input {
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 4px;
+  padding: 1.6rem;
+  background: #f1f1f1;
+  margin: 0.5rem 0;
+  stroke: none;
+}
+.personalInfoContainer input :active,
+.personalInfoContainer input:focus {
+  outline: none;
+}
+.personalInfoHeading,
+.changePasswordHeading {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+}
+.personalInfoFormContainer,
+.passwordFormContainer {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  row-gap: 2rem;
+}
+.firstAndLastNameContainer {
+  display: flex;
+  column-gap: 2rem;
+  justify-content: space-between;
+}
+.firstAndLastNameContainer > div,
+.emailContainer,
+.dateOfBirthContainer,
+.mobileNumberContainer,
+.passwordFormContainer > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateOfBirthContainer,
+.mobileNumberContainer,
+.passwordFormContainer > div {
+  width: 50%;
+}
+.dateOfBirthContainer > input {
+  width: 100%;
+
+  text-transform: uppercase;
+}
+.saveChangesBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+.saveChangesBtn button {
+  font-size: 1.6rem;
+  background: #1b4b66;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px;
+}

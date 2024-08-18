@@ -6,6 +6,7 @@ import bcClasses from "@/components/categoryBredCrumbs/categoryBredCrumbs.module
 import classes from "./index.module.css";
 import { getSession, signOut } from "next-auth/react";
 import SideNavigation from "@/components/profilePageComponents/sideNavigation/sideNavigation";
+import PersonalInfo from "@/components/profilePageComponents/selectedInfo/personalInfo";
 
 function BreadCrumb() {
   return (
@@ -39,7 +40,9 @@ export default function profilePage(props) {
       </div>
       <div className={classes.selectionAndInfoGrid}>
         <SideNavigation />
-        <div>Displayed info</div>
+        <div>
+          <PersonalInfo />
+        </div>
       </div>
     </div>
   );
