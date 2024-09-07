@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { connectToDatabase } from "@/lib/db";
 import logout from "@/public/logout.svg";
 import bcClasses from "@/components/categoryBredCrumbs/categoryBredCrumbs.module.css";
 import classes from "./index.module.css";
@@ -32,7 +33,7 @@ export default function profilePage(props) {
         <div>
           <button onClick={logoutHandler}>
             <span>
-              <Image src={logout} />
+              <Image alt="Logout button icon" src={logout} />
             </span>
             <span>Logout</span>
           </button>
@@ -41,7 +42,7 @@ export default function profilePage(props) {
       <div className={classes.selectionAndInfoGrid}>
         <SideNavigation />
         <div>
-          <PersonalInfo />
+          <PersonalInfo initialData={props.userInfoData} />
         </div>
       </div>
     </div>
@@ -58,8 +59,14 @@ export async function getServerSideProps(context) {
       },
     };
   }
-  console.log("This is Session", session);
+  const client = await connectToDatabase();
+  const db = client.db().collection("usersDb");
+
+  const userInfo = await db.findOne({ email: session.user.email });
+  const { _id, ...userInfoData } = userInfo;
+  client.close();
+
   return {
-    props: { session },
+    props: { session, userInfoData },
   };
 }

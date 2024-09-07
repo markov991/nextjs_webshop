@@ -8,9 +8,6 @@ export default function SideNavigation() {
   const handleRadioChange = (value) => {
     setActiveNavigation(value);
   };
-  useEffect(() => {
-    console.log(activeNavigation);
-  }, [activeNavigation]);
 
   return (
     <div className={classes.sideNavigationContainer}>
@@ -29,7 +26,7 @@ export default function SideNavigation() {
           <span htmlFor="personal_info">Personal info</span>
           <span className={classes.checkmark}></span>
         </div>
-        <Image src={arrow} />
+        <Image alt="arrow icon" src={arrow} />
       </label>
       <label htmlFor="my_orders">
         <div>
@@ -46,7 +43,7 @@ export default function SideNavigation() {
           <span>My Orders</span>
           <span className={classes.checkmark}></span>
         </div>
-        <Image src={arrow} />
+        <Image alt="arrow icon" src={arrow} />
       </label>
       <label htmlFor="my_wishlist">
         <div>
@@ -63,7 +60,7 @@ export default function SideNavigation() {
           <span>My Wishlist</span>
           <span className={classes.checkmark}></span>
         </div>
-        <Image src={arrow} />
+        <Image alt="arrow icon" src={arrow} />
       </label>
       <label htmlFor="my_reviews">
         <div>
@@ -80,7 +77,7 @@ export default function SideNavigation() {
           <span>My Reviews</span>
           <span className={classes.checkmark}></span>
         </div>
-        <Image src={arrow} />
+        <Image alt="arrow icon" src={arrow} />
       </label>
       <label htmlFor="my_address_book">
         <div>
@@ -97,7 +94,7 @@ export default function SideNavigation() {
           <span>My Address Book</span>
           <span className={classes.checkmark}></span>
         </div>
-        <Image src={arrow} />
+        <Image alt="arrow icon" src={arrow} />
       </label>
     </div>
   );
