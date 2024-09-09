@@ -8,6 +8,7 @@ import classes from "./index.module.css";
 import { getSession, signOut } from "next-auth/react";
 import SideNavigation from "@/components/profilePageComponents/sideNavigation/sideNavigation";
 import PersonalInfo from "@/components/profilePageComponents/selectedInfo/personalInfo";
+import MyOrders from "@/components/profilePageComponents/myOrders/myOrders";
 
 function BreadCrumb() {
   return (
@@ -42,7 +43,8 @@ export default function profilePage(props) {
       <div className={classes.selectionAndInfoGrid}>
         <SideNavigation />
         <div>
-          <PersonalInfo initialData={props.userInfoData} />
+          <MyOrders />
+          {/* <PersonalInfo initialData={props.userInfoData} /> */}
         </div>
       </div>
     </div>
