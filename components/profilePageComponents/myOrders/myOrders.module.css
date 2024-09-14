@@ -55,3 +55,86 @@
   border: none;
   cursor: pointer;
 }
+.productInfoGrid {
+  display: grid;
+  grid-template-columns: 10fr 2fr 1fr 2fr;
+}
+.productInfoContainer {
+  font-size: 1.6rem;
+  border-bottom: #f1f1f1 1px solid;
+  color: #626262;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.singleProductBox {
+  font-size: 1.6rem;
+}
+.singleProductBox a {
+  text-decoration: none;
+  color: #1b4b66;
+  font-weight: bolder;
+}
+.imageAndName {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+.imageAndName > img {
+  border-radius: 8px;
+}
+.singleProductBox {
+  margin-bottom: 1rem;
+}
+.orderInformationContainer > h2 {
+  font-size: 2rem;
+  padding-bottom: 5px;
+  border-bottom: #f1f1f1 1px solid;
+}
+
+.orderInformationContainer > div {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  column-gap: 10rem;
+}
+.orderInformationContainer h3 {
+  color: #626262;
+  font-size: 1.6rem;
+}
+.orderInformationContainer span {
+  font-size: 1.6rem;
+  /* display: block; */
+}
+.paymentDetailsContainer > div {
+  display: flex;
+  justify-content: space-between;
+}
+/* .paymentDetailsContainer > div :last-child {
+  
+} */
+.addressInformationContainer {
+  display: flex;
+  flex-direction: column;
+}
+.btnContainer {
+  text-align: right;
+}
+.btnContainer button {
+  cursor: pointer;
+  font-size: 1.6rem;
+
+  border: 1px solid #1b4b66;
+  border-radius: 8px;
+
+  padding: 1rem 2rem;
+}
+
+.callToActionBtn {
+  background: #1b4b66;
+  color: #fff;
+  margin-right: 2rem;
+}
+.btnContainer button:not(.callToActionBtn) {
+  color: #1b4b66;
+  font-weight: bold;
+  background: transparent;
+}

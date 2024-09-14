@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { connectToDatabase } from "@/lib/db";
@@ -9,6 +9,7 @@ import { getSession, signOut } from "next-auth/react";
 import SideNavigation from "@/components/profilePageComponents/sideNavigation/sideNavigation";
 import PersonalInfo from "@/components/profilePageComponents/selectedInfo/personalInfo";
 import MyOrders from "@/components/profilePageComponents/myOrders/myOrders";
+import OrderDetails from "@/components/profilePageComponents/myOrders/orderDetails";
 
 function BreadCrumb() {
   return (
@@ -23,14 +24,41 @@ function BreadCrumb() {
 }
 
 export default function profilePage(props) {
+  const [activeNavigation, setActiveNavigation] = useState("PERSONAL_INFO");
+  const [orderDetailsShow, setOrderDetailsShow] = useState(false);
+  const [orderDetailsInfo, setOrderDetailsInfo] = useState({});
+
   function logoutHandler() {
     signOut();
   }
+  const heading =
+    activeNavigation === "PERSONAL_INFO"
+      ? "Personal information"
+      : activeNavigation === "ORDERS"
+      ? "My Orders"
+      : activeNavigation === "WISHLIST"
+      ? "My Wishlist"
+      : activeNavigation === "REVIEWS"
+      ? "My Reviews"
+      : activeNavigation === "ADDRESS"
+      ? "My Address"
+      : "";
+  const navigationDisplayHandler = (value) => {
+    setOrderDetailsShow(false);
+    setActiveNavigation(value);
+    console.log(value);
+  };
+  const handleOrderSelect = (value) => {
+    setOrderDetailsInfo(value);
+    setOrderDetailsShow(true);
+
+    console.log(value);
+  };
   return (
     <div className={classes.profilePageContainer}>
       <BreadCrumb />
       <div className={classes.nameAndLogoutBtn}>
-        <h1>Personal information</h1>
+        <h1>{heading}</h1>
         <div>
           <button onClick={logoutHandler}>
             <span>
@@ -41,10 +69,23 @@ export default function profilePage(props) {
         </div>
       </div>
       <div className={classes.selectionAndInfoGrid}>
-        <SideNavigation />
+        <SideNavigation changeNavigation={navigationDisplayHandler} />
         <div>
-          <MyOrders />
-          {/* <PersonalInfo initialData={props.userInfoData} /> */}
+          {activeNavigation === "PERSONAL_INFO" && (
+            <PersonalInfo initialData={props.userInfoData} />
+          )}
+          {activeNavigation === "ORDERS" && !orderDetailsShow && (
+            <MyOrders
+              ordersData={props.userInfoData.orders}
+              onOrderSelect={handleOrderSelect}
+            />
+          )}
+          {activeNavigation === "ORDERS" && orderDetailsShow && (
+            <OrderDetails
+              onClick={() => setOrderDetailsShow(false)}
+              orderInfo={orderDetailsInfo}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -3,16 +3,20 @@ import Image from "next/image";
 import classes from "./myOrders.module.css";
 import arrow from "@/public/arrow.svg";
 
-export default function SingleOrder({ orderDetail }) {
+export default function SingleOrder(props) {
   return (
     <div className={`${classes.fiveGridColumn} ${classes.singleOrderBox}`}>
-      <span>{orderDetail.orderId}</span>
-      <span>{orderDetail.date}</span>
-      <span>${orderDetail.price.toFixed(2)}</span>
-      <span>{orderDetail.status}</span>
+      <span>{props.orderDetail.orderId}</span>
+      <span>{props.orderDetail.date}</span>
+      <span>${props.orderDetail.price.toFixed(2)}</span>
+      <span>{props.orderDetail.status}</span>
       <span>
-        <button>
-          <Image src={arrow} />
+        <button
+          onClick={() => {
+            props.orderInfo(props.orderDetail);
+          }}
+        >
+          <Image src={arrow} alt="arrow icon" />
         </button>
       </span>
     </div>

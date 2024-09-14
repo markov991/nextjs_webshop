@@ -3,10 +3,11 @@ import Image from "next/image";
 import arrow from "@/public/arrow.svg";
 import classes from "./sideNavigation.module.css";
 
-export default function SideNavigation() {
+export default function SideNavigation(props) {
   const [activeNavigation, setActiveNavigation] = useState("PERSONAL_INFO");
   const handleRadioChange = (value) => {
     setActiveNavigation(value);
+    props.changeNavigation(value);
   };
 
   return (

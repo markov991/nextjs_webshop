@@ -47,9 +47,13 @@ export default async function handler(req, res) {
       state: null,
       city: null,
       streetAddress: null,
-      pinCode: null,
+      postalCode: null,
     },
-    orders: [],
+    orders: {
+      completed: [],
+      cancelled: [],
+      processing: [],
+    },
     wishlist: [],
     reviews: [],
   });

@@ -48,6 +48,7 @@ export default function PersonalInfo({ initialData }) {
       }
     }
   }
+  console.log(initialData);
   return (
     <div className={classes.personalInfoContainer}>
       <h2 className={classes.personalInfoHeading}>Personal info</h2>
@@ -99,7 +100,6 @@ export default function PersonalInfo({ initialData }) {
             ref={dateOfBirth}
             id="dateOfBirth"
             type="date"
-            /////////---------MOZDA DA SE UBACI ONCHANGE I DA SE STAVI STATE OVDE -----------//////////////
             defaultValue={initialData.dateOfBirth || null}
           />
         </div>
