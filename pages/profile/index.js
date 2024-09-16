@@ -10,6 +10,8 @@ import SideNavigation from "@/components/profilePageComponents/sideNavigation/si
 import PersonalInfo from "@/components/profilePageComponents/selectedInfo/personalInfo";
 import MyOrders from "@/components/profilePageComponents/myOrders/myOrders";
 import OrderDetails from "@/components/profilePageComponents/myOrders/orderDetails";
+import { act } from "react";
+import MyAddress from "@/components/profilePageComponents/myAddress/myAddress";
 
 function BreadCrumb() {
   return (
@@ -85,6 +87,9 @@ export default function profilePage(props) {
               onClick={() => setOrderDetailsShow(false)}
               orderInfo={orderDetailsInfo}
             />
+          )}
+          {activeNavigation === "ADDRESS" && (
+            <MyAddress initialAddress={props.userInfoData.address} />
           )}
         </div>
       </div>
