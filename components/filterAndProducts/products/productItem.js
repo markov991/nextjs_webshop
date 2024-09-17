@@ -17,7 +17,7 @@ export default function ProductItem({ product }) {
           width={300}
           height={300}
           alt={product.name}
-          src={product.images[0]}
+          src={product.images}
         />
       </div>
       <div className={classes.productName}>

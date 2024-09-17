@@ -37,12 +37,14 @@ export default function ProductBox({ product }) {
   return (
     <div className={classes.productBox_Container}>
       <div className={classes.product_Image_Container}>
-        <Image
-          width={300}
-          height={300}
-          alt={product.name}
-          src={product.images[0]}
-        />
+        {product.images ? (
+          <Image
+            width={300}
+            height={300}
+            alt={product.name}
+            src={product.images}
+          />
+        ) : null}
       </div>
       <div className={classes.productName}>
         <Link href={`/categories/${product.category}/${product.productId}`}>
