@@ -31,26 +31,34 @@ export default async function handler(req, res) {
 
   const db = client.db();
 
-  const user = await db
-    .collection("usersDb")
-    .findOne({ email: session.user.email });
-  if (!user) {
-    client.close();
-    return res.status(404).json({ message: "User not found!" });
-  }
+  // const user = await db
+  //   .collection("usersDb")
+  //   .findOne({ email: session.user.email });
+  // if (!user) {
+  //   client.close();
+  //   return res.status(404).json({ message: "User not found!" });
+  // }
 
-  const updatedAddress = {
-    ...user.address,
-    ...(city && { city }),
-    ...(streetAddress && { streetAddress }),
-    ...(postalCode && { postalCode }),
-    ...(state && { state }),
-  };
+  // const updatedAddress = {
+  //   ...user.address,
+  //   ...(city && { city }),
+  //   ...(streetAddress && { streetAddress }),
+  //   ...(postalCode && { postalCode }),
+  //   ...(state && { state }),
+  // };
+
+  const newAddress = {};
+
+  if (city) newAddress["address.city"] = city;
+  if (streetAddress) newAddress["address.streetAddress"] = streetAddress;
+  if (postalCode) newAddress["address.postalCode"] = postalCode;
+  if (state) newAddress["address.state"] = state;
 
   await db.collection("usersDb").updateOne(
     { email: session.user.email },
     {
-      $set: { address: updatedAddress },
+      $set: newAddress,
+      // $set: { address: updatedAddress },
     }
   );
 
