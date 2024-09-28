@@ -47,6 +47,7 @@ export default function ProductImagesSlider({ imagesArray }) {
                 width={75}
                 height={75}
                 alt="Product image"
+                key={index}
               />
             );
           })}
