@@ -5,12 +5,13 @@ import Image from "next/image";
 import classes from "./starRatingDisplay.module.css";
 
 export default function StarRatingDisplay({ avgRating }) {
-  const ratingDisplay = new Array(5);
-  console.log(Math.trunc(avgRating), ratingDisplay);
-
   const Stars = ({ avgRating }) =>
     Array.from({ length: 5 }).map((_, index) => (
-      <Image key={index} src={index < avgRating ? fullStar : emptyStar} />
+      <Image
+        alt="rating stars"
+        key={index}
+        src={index < avgRating ? fullStar : emptyStar}
+      />
     ));
 
   return (
