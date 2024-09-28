@@ -56,6 +56,11 @@ export default async function handler(req, res) {
     },
     wishlist: [],
     reviews: [],
+    cart: {
+      usedCodeForDiscount: null,
+      approvedDiscount: null,
+      items: [],
+    },
   });
   res.status(201).json({ message: "Created user" });
   client.close();

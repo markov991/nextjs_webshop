@@ -12,8 +12,6 @@ export default async function handler(req, res) {
 
   const { city, streetAddress, postalCode, state } = req.body;
 
-  console.log(req.body);
-
   if (
     !city.trim() &&
     !streetAddress.trim() &&
@@ -31,22 +29,6 @@ export default async function handler(req, res) {
 
   const db = client.db();
 
-  // const user = await db
-  //   .collection("usersDb")
-  //   .findOne({ email: session.user.email });
-  // if (!user) {
-  //   client.close();
-  //   return res.status(404).json({ message: "User not found!" });
-  // }
-
-  // const updatedAddress = {
-  //   ...user.address,
-  //   ...(city && { city }),
-  //   ...(streetAddress && { streetAddress }),
-  //   ...(postalCode && { postalCode }),
-  //   ...(state && { state }),
-  // };
-
   const newAddress = {};
 
   if (city) newAddress["address.city"] = city;
@@ -58,7 +40,6 @@ export default async function handler(req, res) {
     { email: session.user.email },
     {
       $set: newAddress,
-      // $set: { address: updatedAddress },
     }
   );
 

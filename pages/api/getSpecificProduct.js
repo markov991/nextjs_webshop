@@ -2,7 +2,6 @@ import { connectToDatabase, getProductDetails } from "@/lib/db";
 
 export default async function handler(req, res) {
   const { productId } = req.query;
-  console.log("this is id from api get sp:", productId);
 
   let client;
 
@@ -16,7 +15,6 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const product = await getProductDetails(client, productId);
     res.status(200).json({ product: product });
-    console.log(product);
   }
   client.close();
 }

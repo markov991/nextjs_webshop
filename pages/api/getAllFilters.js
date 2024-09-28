@@ -9,7 +9,6 @@ export default async function handler(req, res) {
     res.status(500).json({ message: "Connecting to the database failed!!" });
     return;
   }
-  // console.log(client.db());
 
   if (req.method === "GET") {
     const document = await getAllFilters(client);
