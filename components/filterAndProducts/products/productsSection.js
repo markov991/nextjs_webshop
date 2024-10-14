@@ -1,18 +1,76 @@
 import { useState, useEffect } from "react";
 import classes from "./productsSection.module.css";
 import ProductItem from "./productItem";
+import { useSession } from "next-auth/react";
 
 export default function ProductsSection({ products }) {
   const [displayedProducts, setDisplayedProducts] = useState([]);
-  useEffect(() => {
-    setDisplayedProducts(products);
-    console.log(products);
-  }, [products]);
-
+  const [wishlist, setWishlist] = useState([]);
   const [toggleProductSortOptions, setToggleProductSortOptions] =
     useState(false);
   const [productSortValue, setProductSortValue] = useState("Default");
   const [productSortAscending, setProductSortAscending] = useState(true);
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    setDisplayedProducts(products);
+  }, [products]);
+
+  useEffect(() => {
+    async function handlingWishlist() {
+      const wishlist = JSON.parse(localStorage.getItem("wishlist"));
+
+      if (session) {
+        const wishlistDb = await fetch(
+          `/api/wishlistHandler?user=${session.user.email}`
+        );
+        const responseWishlistDb = await wishlistDb.json();
+
+        setWishlist([
+          ...new Set([...wishlist.items, ...responseWishlistDb.data]),
+        ]);
+        localStorage.setItem(
+          "wishlist",
+          JSON.stringify({
+            items: [
+              ...new Set([...wishlist.items, ...responseWishlistDb.data]),
+            ],
+          })
+        );
+        //comparing and merging
+
+        if (
+          responseWishlistDb.data.length !==
+          [...new Set([...wishlist.items, ...responseWishlistDb.data])].length
+        ) {
+          const updatingWishlist = await fetch(
+            `/api/wishlistHandler?user=${session.user.email}`,
+            {
+              method: "PATCH",
+              body: JSON.stringify({ itemsToAdd: wishlist.items }),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          if (!updatingWishlist.ok) {
+            alert("Something went wrong!");
+          }
+        }
+      }
+      if (!session) {
+        if (!wishlist) {
+          localStorage.setItem(
+            "wishlist",
+            JSON.stringify({
+              items: [],
+            })
+          );
+        }
+
+        setWishlist(wishlist.items);
+      }
+    }
+    handlingWishlist();
+  }, [session]);
 
   useEffect(() => {
     if (productSortValue === "Name") {
@@ -108,7 +166,12 @@ export default function ProductsSection({ products }) {
       </div>
       <div className={classes.productListSection}>
         {displayedProducts.map((product) => (
-          <ProductItem key={product._id} product={product} />
+          <ProductItem
+            key={product._id}
+            product={product}
+            itemOnWishlist={wishlist.includes(product.productId)}
+            session={session}
+          />
         ))}
       </div>
     </div>

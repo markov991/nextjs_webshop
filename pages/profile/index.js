@@ -10,8 +10,8 @@ import SideNavigation from "@/components/profilePageComponents/sideNavigation/si
 import PersonalInfo from "@/components/profilePageComponents/selectedInfo/personalInfo";
 import MyOrders from "@/components/profilePageComponents/myOrders/myOrders";
 import OrderDetails from "@/components/profilePageComponents/myOrders/orderDetails";
-import { act } from "react";
 import MyAddress from "@/components/profilePageComponents/myAddress/myAddress";
+import MyWishlist from "@/components/profilePageComponents/myWishlist/myWishlist";
 
 function BreadCrumb() {
   return (
@@ -48,13 +48,10 @@ export default function profilePage(props) {
   const navigationDisplayHandler = (value) => {
     setOrderDetailsShow(false);
     setActiveNavigation(value);
-    console.log(value);
   };
   const handleOrderSelect = (value) => {
     setOrderDetailsInfo(value);
     setOrderDetailsShow(true);
-
-    console.log(value);
   };
   return (
     <div className={classes.profilePageContainer}>
@@ -90,6 +87,9 @@ export default function profilePage(props) {
           )}
           {activeNavigation === "ADDRESS" && (
             <MyAddress initialAddress={props.userInfoData.address} />
+          )}
+          {activeNavigation === "WISHLIST" && (
+            <MyWishlist session={props.session} />
           )}
         </div>
       </div>

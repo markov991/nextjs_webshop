@@ -1,12 +1,15 @@
 import React from "react";
 import wishlist from "@/public/wishlist.svg";
+import onWishlist from "@/public/onWishlist.svg";
 import classes from "./productPageBtns.module.css";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
-export default function ProductPageBtns({ onAddToTheCartHandler }) {
-  const { data: session } = useSession();
-
+export default function ProductPageBtns({
+  onAddToTheCartHandler,
+  wishlistHandler,
+  isOnWishlist,
+}) {
   return (
     <div className={classes.btnsBox}>
       <button onClick={onAddToTheCartHandler} className={classes.addToCartBtn}>
@@ -43,9 +46,11 @@ export default function ProductPageBtns({ onAddToTheCartHandler }) {
 
         <span>Add to bag</span>
       </button>
-      <button className={classes.addToWishlistBtn}>
-        <Image alt="wishlist icon" src={wishlist} />
-        <span>Add To Wishlist</span>
+      <button onClick={wishlistHandler} className={classes.addToWishlistBtn}>
+        <Image alt="wishlist icon" src={isOnWishlist ? onWishlist : wishlist} />
+        <span>{`${
+          isOnWishlist ? "Remove From Wishlist" : "Add To Wishlist"
+        }`}</span>
       </button>
     </div>
   );

@@ -8,10 +8,13 @@ import classes from "./icons-group.module.css";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import CartModal from "../cartModal/cartModal";
+import WishlistModal from "../wishlistModal/wishlistModal";
 
 export default function IconsGroup() {
   const [showCart, setShowCart] = useState(false);
+  const [showWishlist, setShowWishlist] = useState(false);
   const [cartItems, setCartItems] = useState();
+  const [wishlistItems, setWishlistItems] = useState();
   const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
@@ -159,10 +162,52 @@ export default function IconsGroup() {
       }
     }
   }
+  async function showWishlistHandler() {
+    setShowWishlist(true);
+    setLoading(true);
+    const wishlist = localStorage.getItem("wishlist");
+    const response = await fetch(`/api/getWishlistItems?items=${wishlist}`);
+    if (response.ok) {
+      const wishlistItemsDetails = await response.json();
+      setWishlistItems(wishlistItemsDetails.productDetails);
+      setLoading(false);
+    }
+    console.log(response);
+
+    console.log("This is wishlist");
+  }
+  async function removingItemFromWishlist(productId) {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist"));
+
+    if (session) {
+      const removingItem = await fetch(
+        `/api/wishlistHandler?user=${session.user.email}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({ itemToDelete: [`${productId}`] }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (!removingItem.ok) {
+        alert("Something went wrong!");
+      }
+    }
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify({
+        items: wishlist.items.filter((item) => item != productId),
+      })
+    );
+    setWishlistItems(
+      wishlistItems.filter((item) => item.productId != productId)
+    );
+  }
 
   return (
     <div className={classes.icons}>
-      <Image alt="Icon for wishlist" src={wishlist} />
+      <button onClick={showWishlistHandler}>
+        <Image alt="Icon for wishlist" src={wishlist} />
+      </button>
       <Link href="/profile">
         <Image alt="Profile icon" src={profile} />
       </Link>
@@ -177,6 +222,15 @@ export default function IconsGroup() {
             cartItems={cartItems}
             passingItemToBeRemovedHandler={removingItemFromCartHandler}
             onChangeQuantityHandler={onChangeQuantityHandler}
+          />,
+          document.body
+        )}
+      {showWishlist &&
+        createPortal(
+          <WishlistModal
+            wishlistItems={wishlistItems}
+            onCloseModal={() => setShowWishlist(false)}
+            passingItemToBeRemovedFromWishlist={removingItemFromWishlist}
           />,
           document.body
         )}
