@@ -12,6 +12,7 @@ export default function CartModal({
   loading,
   passingItemToBeRemovedHandler,
   onChangeQuantityHandler,
+  passingCode,
 }) {
   let subtotal;
   if (cartItems) {
@@ -109,7 +110,7 @@ export default function CartModal({
                       </span>
                     </div>
                   </div>
-                  <InputCouponBox />
+                  <InputCouponBox passingCode={(value) => passingCode(value)} />
                   <div className={classes.centeredContent}>
                     <button className={classes.placeOrderBtn}>
                       Place Your Order

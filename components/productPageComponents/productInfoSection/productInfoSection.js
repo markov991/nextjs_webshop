@@ -16,6 +16,7 @@ export default function ProductInfoSection({
   const [quantitySelected, setQuantitySelected] = useState();
   const [wishlist, setWishlist] = useState([]);
   const [isOnWishlist, setIsOnWishlist] = useState();
+  const [approvedDiscount, setApprovedDiscount] = useState(0);
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -73,14 +74,27 @@ export default function ProductInfoSection({
 
       console.log("This is session", session);
     }
+
+    async function handlingDiscount() {
+      if (session) {
+        const response = await fetch(
+          `/api/getItemsFromTheCart?user=${session.user.email}`
+        );
+        const cartData = await response.json();
+        setApprovedDiscount(cartData.cart.approvedDiscount);
+      }
+      if (!session) {
+        const { approvedDiscount } = JSON.parse(localStorage.getItem("cart"));
+        setApprovedDiscount(approvedDiscount);
+      }
+    }
+    handlingDiscount();
     handlingWishlist();
   }, [session]);
 
-  useSession(() => {
-    if (wishlist) {
-      setIsOnWishlist(wishlist.includes(productId));
-    }
-  }, [wishlist]);
+  useEffect(() => {
+    setIsOnWishlist(wishlist.includes(productId));
+  }, [wishlist, productId]);
 
   async function addToTheCartHandler() {
     if (session) {
@@ -195,6 +209,38 @@ export default function ProductInfoSection({
       );
     }
   }
+  async function checkingDiscountCodeHandler(code) {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const response = await fetch(
+      `/api/checkingDiscountCode?user=${
+        session && session.user.email
+      }&usedCode=${code}`
+    );
+
+    const { data: discountCodeInfo } = await response.json();
+
+    if (discountCodeInfo) {
+      if (!discountCodeInfo.activeCode) {
+        alert("This code expired");
+      }
+      if (discountCodeInfo.activeCode) {
+        if (!session) {
+          localStorage.setItem(
+            "cart",
+            JSON.stringify({
+              approvedDiscount: discountCodeInfo.discountValue,
+              usedCodeForDiscount: discountCodeInfo.discountCode,
+              items: cart.items,
+            })
+          );
+        }
+      }
+      setApprovedDiscount(discountCodeInfo.discountValue);
+    }
+    if (!discountCodeInfo) {
+      alert("Code does not exist");
+    }
+  }
 
   return (
     <div className={classes.nameAndPrice}>
@@ -207,8 +253,18 @@ export default function ProductInfoSection({
           <span>Ratings</span>
         </div>
       </div>
-      <div className={classes.price}>${price.toFixed(2)}</div>
-      <CouponBox />
+      <div className={classes.price}>
+        <div className={`${!approvedDiscount ? classes.officialPrice : ""}`}>
+          ${price.toFixed(2)}
+        </div>
+        {approvedDiscount > 0 && (
+          <div className={`${approvedDiscount ? classes.officialPrice : ""}`}>
+            ${price - price * (approvedDiscount / 100).toFixed(2)}
+          </div>
+        )}
+      </div>
+
+      <CouponBox passingCode={(code) => checkingDiscountCodeHandler(code)} />
       <QuantitySelect
         onChangeQuantityHandler={(value) => setQuantitySelected(value)}
       />

@@ -1,4 +1,3 @@
-
 .nameAndPrice {
   padding-bottom: 2rem;
   /* margin-bottom: 10rem; */
@@ -8,10 +7,20 @@
   font-size: 3.4rem;
 }
 .price {
+  display: flex;
+  column-gap: 2rem;
   font-size: 5.2rem;
   font-weight: bold;
   padding-bottom: 2rem;
   border-bottom: 1px solid #d9d9d9;
+}
+.price > * {
+  text-decoration: line-through;
+  color: #b6b6b6;
+}
+.officialPrice {
+  text-decoration: none;
+  color: #000;
 }
 .ratingsAndRevives {
   display: flex;

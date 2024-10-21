@@ -202,6 +202,47 @@ export default function IconsGroup() {
       wishlistItems.filter((item) => item.productId != productId)
     );
   }
+  async function checkingDiscountCodeHandler(code) {
+    setLoading(true);
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const response = await fetch(
+      `/api/checkingDiscountCode?user=${
+        session && session.user.email
+      }&usedCode=${code}`
+    );
+
+    const { data: discountCodeInfo } = await response.json();
+
+    if (discountCodeInfo) {
+      if (!discountCodeInfo.activeCode) {
+        alert("This code expired");
+      }
+      if (discountCodeInfo.activeCode) {
+        if (!session) {
+          localStorage.setItem(
+            "cart",
+            JSON.stringify({
+              approvedDiscount: discountCodeInfo.discountValue,
+              usedCodeForDiscount: discountCodeInfo.discountCode,
+              items: cart.items,
+            })
+          );
+        }
+
+        setCartItems((prev) => ({
+          cart: {
+            ...prev.cart,
+            approvedDiscount: discountCodeInfo.discountValue,
+            usedCodeForDiscount: discountCodeInfo.discountCode,
+          },
+        }));
+      }
+    }
+    if (!discountCodeInfo) {
+      alert("Code does not exist");
+    }
+    setLoading(false);
+  }
 
   return (
     <div className={classes.icons}>
@@ -222,6 +263,7 @@ export default function IconsGroup() {
             cartItems={cartItems}
             passingItemToBeRemovedHandler={removingItemFromCartHandler}
             onChangeQuantityHandler={onChangeQuantityHandler}
+            passingCode={checkingDiscountCodeHandler}
           />,
           document.body
         )}
