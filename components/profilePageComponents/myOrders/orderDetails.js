@@ -58,10 +58,7 @@ export default function OrderDetails({ orderInfo, onClick }) {
               <span> Discount:</span>
               <span>
                 -$
-                {(
-                  orderInfo.price *
-                  (orderInfo.discount / orderInfo.price)
-                ).toFixed(2)}
+                {(orderInfo.price * (orderInfo.discount / 100)).toFixed(2)}
               </span>
             </div>
             <div>
@@ -70,14 +67,14 @@ export default function OrderDetails({ orderInfo, onClick }) {
                 ${" "}
                 {(
                   orderInfo.price -
-                  orderInfo.price * (orderInfo.discount / orderInfo.price)
+                  orderInfo.price * (orderInfo.discount / 100)
                 ).toFixed(2)}
               </span>
             </div>
           </div>
           <div>
             <h3>Payment Details</h3>
-            <span>Cache on delivery</span>
+            <span>{orderInfo.paymentDetails}</span>
           </div>
           <div>
             <h3>Address Details</h3>

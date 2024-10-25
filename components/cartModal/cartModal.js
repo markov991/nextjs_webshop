@@ -49,6 +49,7 @@ export default function CartModal({
                   <div>
                     {/* <span></span> */}
                     <Link
+                      onClick={onCloseModal}
                       href={`/categories/${item.category}/${item.productId}`}
                     >
                       <h3>{item.name}</h3>
@@ -113,7 +114,9 @@ export default function CartModal({
                   <InputCouponBox passingCode={(value) => passingCode(value)} />
                   <div className={classes.centeredContent}>
                     <button className={classes.placeOrderBtn}>
-                      Place Your Order
+                      <Link onClick={onCloseModal} href={"/checkout"}>
+                        Place Your Order
+                      </Link>
                     </button>
                   </div>
                   <div className={classes.centeredContent}>

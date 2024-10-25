@@ -8,8 +8,6 @@ export default async function handler(req, res) {
   }
 
   const { usedCode, user } = req.query;
-  console.log("This is code", usedCode);
-  console.log("this is user:", user);
 
   let client;
 

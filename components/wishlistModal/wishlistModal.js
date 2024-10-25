@@ -31,7 +31,10 @@ export default function WishlistModal({
                   alt={item.name}
                   src={item.images}
                 />
-                <Link href={`/categories/${item.category}/${item.productId}`}>
+                <Link
+                  onClick={onCloseModal}
+                  href={`/categories/${item.category}/${item.productId}`}
+                >
                   <h3>{item.name}</h3>
                 </Link>
                 <button

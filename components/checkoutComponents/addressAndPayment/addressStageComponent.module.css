@@ -1,0 +1,49 @@
+.addressGridForm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3rem;
+  row-gap: 1rem;
+}
+.addressGridForm > div {
+  display: flex;
+  flex-direction: column;
+}
+.addressGridForm > div > div {
+  display: flex;
+  flex-direction: column;
+}
+.addressGridForm input {
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 4px;
+  padding: 1.6rem;
+  background: #f1f1f1;
+  margin: 0.5rem 0;
+  stroke: none;
+}
+.addressGridForm input:active,
+.addressGridForm input:focus {
+  outline: none;
+}
+.btnContainer {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+.btnContainer > button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  padding: 1rem 4rem;
+}
+.btnContainer > button:first-child {
+  color: #1b4b66;
+  background: #fff;
+  border: 1px solid #1b4b66;
+}
+
+.btnContainer > button:last-child {
+  background: #1b4b66;
+  color: #fff;
+}

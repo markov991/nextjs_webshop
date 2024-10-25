@@ -1,0 +1,102 @@
+.main {
+  display: grid;
+  grid-template-columns: 7fr 4fr;
+  column-gap: 4rem;
+  margin-bottom: 10rem;
+  font-size: 1.6rem;
+}
+.main section {
+  /* height: 200px; */
+
+  color: rgb(0, 0, 0);
+}
+.productsSectionContainer > div:first-child {
+  /* display: grid;
+  grid-template-columns: 10fr 2fr 1fr 2fr; */
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #969696;
+  color: #626262;
+}
+.productsSectionContainer > div:not(:first-child) {
+  margin-bottom: 2rem;
+}
+.productInfoGrid {
+  display: grid;
+  grid-template-columns: 10fr 2fr 1fr 2fr;
+  align-items: center;
+}
+.productImageAndName {
+  display: flex;
+  column-gap: 1rem;
+}
+.productImageAndName img {
+  border-radius: 8px;
+}
+.productImageAndName a {
+  text-decoration: none;
+  color: #1b4b66;
+}
+.productNameAndRmvBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.removeBtn button {
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: red;
+}
+.couponBoxHolder {
+  width: fit-content;
+}
+.couponSectionHeader {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #969696;
+  color: #626262;
+}
+.orderSummaryHeading {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #969696;
+}
+.billInformationContainer > div {
+  display: flex;
+  justify-content: space-between;
+  color: #626262;
+}
+
+.billInformationContainer > div > span:last-child {
+  color: #000;
+}
+.billInformationContainer .grandTotal {
+  color: #000;
+  font-weight: bold;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+}
+.btnContainer {
+  font-size: 1.6rem;
+}
+.btnContainer > button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  background: #1b4b66;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1rem 4rem;
+}
+.btnContainer > a {
+  text-decoration: none;
+  border: 2px #1b4b66 solid;
+  color: #1b4b66;
+  border-radius: 8px;
+  padding: 1rem 4rem;
+}
