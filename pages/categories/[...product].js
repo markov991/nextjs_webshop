@@ -43,6 +43,7 @@ export default function ProductPage({ productDetails }) {
           color={color}
           category={category}
           description={description}
+          productId={productId}
         />
       </main>
     </>

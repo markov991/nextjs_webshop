@@ -1,7 +1,7 @@
 import { connectToDatabase, getRelatedProducts } from "@/lib/db";
 
 export default async function handler(req, res) {
-  const { category, priceFilter, colorFilter } = req.query;
+  const { category, priceFilter, colorFilter, productItem } = req.query;
   const convertedPriceFilter = priceFilter.split(",");
 
   let client;
@@ -14,10 +14,16 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const relatedProducts = await getRelatedProducts(client, category, {
-      colorFilter: colorFilter,
-      priceFilter: [+convertedPriceFilter[0], +convertedPriceFilter[1]],
-    });
+    const relatedProducts = await getRelatedProducts(
+      client,
+      category,
+      {
+        colorFilter: colorFilter,
+        priceFilter: [+convertedPriceFilter[0], +convertedPriceFilter[1]],
+      },
+      productItem
+    );
+
     res.status(200).json({ products: relatedProducts });
   }
   client.close();

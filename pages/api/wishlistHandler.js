@@ -24,7 +24,7 @@ export default async function handler(req, res) {
         .db()
         .collection("usersDb")
         .findOne({ email: user });
-      console.log("This is wishlistL", wishlist);
+
       res.status(200).json({ data: wishlist });
     }
     if (req.method === "PATCH") {
