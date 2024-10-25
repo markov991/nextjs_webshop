@@ -60,33 +60,6 @@ export default function PriceFilter({ minPrice, maxPrice }) {
           </div>
         </div>
       )}
-      {/* <div className={""}>
-        <label htmlFor="min_price">Min price</label>
-        <input
-          onChange={(event) => {
-            setMinPrice(event.target.value);
-          }}
-          id="min_price"
-          type="range"
-          min={9}
-          max={240}
-        />
-        <span>{minPrice}</span>
-      </div> */}
-      {/* <div>
-        <span>max</span>
-        <input
-          onChange={(event) => {
-            setMaxPrice(event.target.value);
-          }}
-          className={classes.max_price_input}
-          id="max_price"
-          type="range"
-          min={9}
-          max={240}
-        />
-        <label htmlFor="max_price">{maxPrice}</label>
-      </div> */}
     </div>
   );
 }

@@ -38,7 +38,7 @@ export default function ColorFilter({ colors }) {
       {expended && (
         <ul className={classes.listStyling}>
           {colors.map((color) => (
-            <li key={color}>
+            <li className={classes.colorList} key={color}>
               <input
                 name={color}
                 id={color}
