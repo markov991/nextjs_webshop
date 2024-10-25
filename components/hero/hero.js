@@ -8,7 +8,10 @@ export default function HeroSection() {
     <section className={classes.heroSection}>
       <div className={classes.heroSectionOverlay}>
         <div className={classes.heroContent}>
-          <h1>All in or nothing</h1>
+          <h1>
+            <div>ADIDAS</div>
+            <div>All in or nothing</div>
+          </h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
             efficitur augue vitae pretium rhoncus.

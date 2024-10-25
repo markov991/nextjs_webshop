@@ -27,8 +27,6 @@ function SingleProduct({ productInfo }) {
 }
 
 export default function OrderDetails({ orderInfo, onClick }) {
-  console.log(orderInfo);
-
   return (
     <>
       <div

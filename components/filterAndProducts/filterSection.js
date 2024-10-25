@@ -11,8 +11,6 @@ export default function FilterSection(category) {
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
 
-  // const [expended, setExpended] = useState(false);
-
   useEffect(() => {
     fetch("/api/getAllFilters")
       .then((response) => response.json())

@@ -3,7 +3,6 @@ import Link from "next/link";
 import classes from "./categoryBredCrumbs.module.css";
 
 export default function CategoryBredCrumbs({ category, productName }) {
-  console.log(category);
   return (
     <div className={classes.bredCrumbs}>
       <span>

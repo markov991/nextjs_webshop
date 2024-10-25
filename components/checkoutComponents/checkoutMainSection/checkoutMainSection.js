@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import classes from "./checkoutMainSection.module.css";
-
 import Image from "next/image";
 import Link from "next/link";
 import InputCouponBox from "@/components/couponBox/inputCouponBox";

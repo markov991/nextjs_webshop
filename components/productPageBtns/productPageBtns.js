@@ -3,7 +3,6 @@ import wishlist from "@/public/wishlist.svg";
 import onWishlist from "@/public/onWishlist.svg";
 import classes from "./productPageBtns.module.css";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
 
 export default function ProductPageBtns({
   onAddToTheCartHandler,

@@ -5,7 +5,6 @@ import SingleOrder from "./singleOrder";
 export default function MyOrders({ ordersData, onOrderSelect, onClick }) {
   const [activeType, setActiveType] = useState("COMPLETED");
 
-  console.log(ordersData);
   const orderInfo = (value) => {
     onOrderSelect(value);
   };

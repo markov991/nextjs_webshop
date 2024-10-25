@@ -14,19 +14,9 @@ export default function Footer() {
       <div className={classes.grid_col_three}>
         <div className={classes.categoriesFooter}>
           <h3>Shop by category</h3>
-          <Link href="/categories/man">Man</Link>
-          <Link href="/categories/woman">Woman</Link>
-          <Link href="/categories/kids">Kids</Link>
-          <Link href="/categories/accessories">Accessories</Link>
-          <Link href="/categories/shoes">Shoes</Link>
-          <Link href="/categories/clothing">Clothing</Link>
-          <Link href="/categories/essentials">Essentials</Link>
-          <Link href="/categories/originals">Originals</Link>
-          <Link href="/categories/soccer">Soccer</Link>
-          <Link href="/categories/swim">Swim</Link>
-          <Link href="/categories/running">Running</Link>
-          <Link href="/categories/sportswear">Sportswear</Link>
-          <Link href="/categories/training">Training</Link>
+          <Link href="/categories/Accessories">Accessories</Link>
+          <Link href="/categories/Shoes">Shoes</Link>
+          <Link href="/categories/Clothing">Clothing</Link>
         </div>
         <div>
           <h3>About</h3>

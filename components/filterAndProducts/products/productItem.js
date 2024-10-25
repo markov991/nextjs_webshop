@@ -4,7 +4,7 @@ import classes from "./productItem.module.css";
 import wishlist from "@/public/wishlist.svg";
 import onWishlist from "@/public/onWishlist.svg";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function ProductItem({ product, itemOnWishlist, session }) {
   const [isOnWishlist, setIsOnWishlist] = useState(itemOnWishlist);
@@ -57,8 +57,6 @@ export default function ProductItem({ product, itemOnWishlist, session }) {
       );
     }
   };
-
-
 
   return (
     <div className={classes.productBox_Container}>

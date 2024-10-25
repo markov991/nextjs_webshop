@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import wishlist from "@/public/wishlist.svg";

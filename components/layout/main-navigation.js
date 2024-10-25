@@ -4,9 +4,8 @@ import Image from "next/image";
 import search from "@/public/search.svg";
 import classes from "./main-navigation.module.css";
 import IconsGroup from "./icons-group";
-import { SessionProvider } from "next-auth/react";
 
-export default function MainNavigation({ session }) {
+export default function MainNavigation() {
   return (
     <header className={classes.header}>
       <div>
@@ -24,9 +23,7 @@ export default function MainNavigation({ session }) {
           <Image alt="search icon" src={search} />
           <input placeholder="Search for products" type=" text" />
         </div>
-        <SessionProvider session={session}>
-          <IconsGroup />
-        </SessionProvider>
+        <IconsGroup />
       </div>
     </header>
   );

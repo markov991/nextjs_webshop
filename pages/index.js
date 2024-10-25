@@ -17,6 +17,7 @@ export default function HomePage() {
   return (
     <div>
       <HeroSection />
+
       <FeaturedProducts featuredProducts={featuredProducts} />
     </div>
   );

@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
@@ -26,14 +24,6 @@ const DUMMY_PRODUCT = {
 };
 
 export default function ProductBox({ product }) {
-  console.log(product);
-  // const [imageLocation, setImageLocation] = useState("");
-
-  // useEffect(() => {
-  //   const productImage = product.images.split("~")[0];
-  //   setImageLocation(productImage);
-  // }, []);
-
   return (
     <div className={classes.productBox_Container}>
       <div className={classes.product_Image_Container}>

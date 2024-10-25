@@ -5,9 +5,9 @@ import ProductImagesSlider from "@/components/productPageComponents/productImage
 import ProductInfoSection from "@/components/productPageComponents/productInfoSection/productInfoSection";
 import ImagesAndNameSection from "@/components/layout/imagesAndNameSection";
 import ProductDescriptionSection from "@/components/productDescriptionSection/productDescriptionSection";
-import { SessionProvider } from "next-auth/react";
+// import { SessionProvider } from "next-auth/react";
 
-export default function ProductPage({ productDetails, session }) {
+export default function ProductPage({ productDetails }) {
   const {
     name,
     category,
@@ -28,15 +28,15 @@ export default function ProductPage({ productDetails, session }) {
       <main>
         <ImagesAndNameSection>
           <ProductImagesSlider imagesArray={images} />
-          <SessionProvider session={session}>
-            <ProductInfoSection
-              productId={productId}
-              name={name}
-              avg_rating={average_rating}
-              rating_count={reviews_count}
-              price={selling_price}
-            />
-          </SessionProvider>
+          {/* <SessionProvider session={session}> */}
+          <ProductInfoSection
+            productId={productId}
+            name={name}
+            avg_rating={average_rating}
+            rating_count={reviews_count}
+            price={selling_price}
+          />
+          {/* </SessionProvider> */}
         </ImagesAndNameSection>
         <ProductDescriptionSection
           price={selling_price}

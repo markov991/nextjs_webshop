@@ -2,8 +2,11 @@ import React from "react";
 import Link from "next/link";
 import ProductBox from "../product-box/product-box";
 import classes from "./featuredProducts.module.css";
+import { useSession } from "next-auth/react";
 
 export default function FeaturedProducts({ featuredProducts }) {
+  const { data: session } = useSession();
+
   return (
     <section className={classes.featuredProducts}>
       <div className={classes.featuredProductsHeading}>
