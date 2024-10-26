@@ -1,11 +1,11 @@
 import React from "react";
+import Head from "next/head";
 import { connectToDatabase, getProductDetails, getAllPaths } from "@/lib/db";
 import CategoryBredCrumbs from "@/components/categoryBredCrumbs/categoryBredCrumbs";
 import ProductImagesSlider from "@/components/productPageComponents/productImagesSlider/productImagesSlider";
 import ProductInfoSection from "@/components/productPageComponents/productInfoSection/productInfoSection";
 import ImagesAndNameSection from "@/components/layout/imagesAndNameSection";
 import ProductDescriptionSection from "@/components/productDescriptionSection/productDescriptionSection";
-// import { SessionProvider } from "next-auth/react";
 
 export default function ProductPage({ productDetails }) {
   const {
@@ -24,11 +24,15 @@ export default function ProductPage({ productDetails }) {
 
   return (
     <>
+      <Head>
+        <title>{name}</title>
+        <meta property="title" content={name} />
+        <meta property="description" content={description} />
+      </Head>
       <CategoryBredCrumbs category={category} productName={name} />
       <main>
         <ImagesAndNameSection>
           <ProductImagesSlider imagesArray={images} />
-          {/* <SessionProvider session={session}> */}
           <ProductInfoSection
             productId={productId}
             name={name}
@@ -36,7 +40,6 @@ export default function ProductPage({ productDetails }) {
             rating_count={reviews_count}
             price={selling_price}
           />
-          {/* </SessionProvider> */}
         </ImagesAndNameSection>
         <ProductDescriptionSection
           price={selling_price}
@@ -76,6 +79,6 @@ export async function getStaticPaths() {
   return {
     paths: paths,
 
-    fallback: true,
+    fallback: false,
   };
 }

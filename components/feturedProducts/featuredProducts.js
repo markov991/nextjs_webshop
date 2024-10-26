@@ -5,12 +5,8 @@ import classes from "./featuredProducts.module.css";
 import { useSession } from "next-auth/react";
 
 export default function FeaturedProducts({ featuredProducts }) {
-  const [displayedProducts, setDisplayedProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const { data: session } = useSession();
-  useEffect(() => {
-    setDisplayedProducts(featuredProducts);
-  }, [featuredProducts]);
 
   useEffect(() => {
     async function handlingWishlist() {
@@ -77,9 +73,9 @@ export default function FeaturedProducts({ featuredProducts }) {
         </Link>
       </div>
       <div className={classes.featuredProductsBox}>
-        {displayedProducts.map((product) => (
+        {featuredProducts.map((product) => (
           <ProductItem
-            key={product._id}
+            key={product.productId}
             product={product}
             itemOnWishlist={wishlist.includes(product.productId)}
             session={session}

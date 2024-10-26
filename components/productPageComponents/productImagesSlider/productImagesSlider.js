@@ -30,6 +30,7 @@ export default function ProductImagesSlider({ imagesArray }) {
           layout="responsive"
           objectFit="contain"
           alt="Product image"
+          priority
         />
       </div>
       <div className={classes.selectProductImageBox}>
