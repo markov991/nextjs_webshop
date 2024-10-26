@@ -55,3 +55,18 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
+.btnContainer {
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: center;
+}
+
+.btnContainer button {
+  cursor: pointer;
+  background: transparent;
+  color: #1b4b66;
+  border: 1px solid #1b4b66;
+  border-radius: 300px;
+  padding: 1rem 3rem;
+  margin-bottom: 4rem;
+}

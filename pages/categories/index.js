@@ -24,16 +24,6 @@ export default function CategoriesPage(props) {
       });
   }, [filters]);
 
-  // useEffect(() => {
-  //   fetch(
-  //     `/api/getAllProducts?page=0&colorFilter=${filters.pickedColor}&priceFilter=${filters.priceRange}`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setProducts([...data.products]);
-  //     });
-  // }, []);
-  // const { products } = props;
   const loadMoreHandler = () => {
     setCounter(counter + 1);
     fetch(
@@ -53,8 +43,10 @@ export default function CategoriesPage(props) {
       <CategoryBredCrumbs />
 
       <h1>All categories</h1>
-      <FilterAndProductsSection products={products} />
-      <button onClick={loadMoreHandler}>LOAD MORE</button>
+      <FilterAndProductsSection
+        loadMoreHandler={loadMoreHandler}
+        products={products}
+      />
     </main>
   );
 }
