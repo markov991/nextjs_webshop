@@ -62,6 +62,6 @@ export default async function handler(req, res) {
       items: [],
     },
   });
-  res.status(201).json({ message: "Created user" });
   client.close();
+  res.status(201).json({ message: "Created user" });
 }

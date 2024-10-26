@@ -12,18 +12,15 @@ export default async function handler(req, res) {
 
   try {
     client = await connectToDatabase();
-  } catch (error) {
-    res.status(500).json({ message: "connection to database failed" });
-    return;
-  }
-  try {
+
     await removeItemFromCart(client, user, product);
+    res.status(200).json({
+      status: "success",
+      message: "Item successfully removed from cart",
+    });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
+  } finally {
+    client.close();
   }
-  client.close();
-  res.status(200).json({
-    status: "success",
-    message: "Item successfully removed from cart",
-  });
 }

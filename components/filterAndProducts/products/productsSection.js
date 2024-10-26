@@ -3,7 +3,11 @@ import classes from "./productsSection.module.css";
 import ProductItem from "./productItem";
 import { useSession } from "next-auth/react";
 
-export default function ProductsSection({ products, loadMoreHandler }) {
+export default function ProductsSection({
+  products,
+  loadMoreHandler,
+  noMoreItemsToLoad,
+}) {
   const [displayedProducts, setDisplayedProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [toggleProductSortOptions, setToggleProductSortOptions] =
@@ -174,7 +178,7 @@ export default function ProductsSection({ products, loadMoreHandler }) {
           />
         ))}
         <div className={classes.btnContainer}>
-          {products.length > 0 && (
+          {products.length > 0 && !noMoreItemsToLoad && (
             <button onClick={loadMoreHandler}>LOAD MORE</button>
           )}
         </div>

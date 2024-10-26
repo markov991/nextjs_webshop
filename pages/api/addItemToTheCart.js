@@ -42,7 +42,6 @@ export default async function handler(req, res) {
     res.status(500).json({ message: error.message || "Something went wrong" });
   } finally {
     if (client) {
-      
       client.close();
     }
   }

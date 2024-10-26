@@ -27,5 +27,6 @@ export async function getStaticProps(context) {
   const client = await connectToDatabase();
   const products = await getRandomProducts(client);
   const featuredProducts = products.map(({ _id, ...item }) => item);
+  client.close();
   return { props: { featuredProducts } };
 }

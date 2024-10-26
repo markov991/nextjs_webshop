@@ -25,24 +25,33 @@ export default async function handler(req, res) {
   if (!session) {
     return res.status(401).json({ message: "Not authenticated!" });
   }
-  const client = await connectToDatabase();
+
+  let client;
+  try {
+    client = await connectToDatabase();
+  } catch (error) {
+    res.status(500).json({ message: "connection to database failed" });
+  }
 
   const db = client.db();
+  try {
+    const newAddress = {};
 
-  const newAddress = {};
+    if (city) newAddress["address.city"] = city;
+    if (streetAddress) newAddress["address.streetAddress"] = streetAddress;
+    if (postalCode) newAddress["address.postalCode"] = postalCode;
+    if (state) newAddress["address.state"] = state;
 
-  if (city) newAddress["address.city"] = city;
-  if (streetAddress) newAddress["address.streetAddress"] = streetAddress;
-  if (postalCode) newAddress["address.postalCode"] = postalCode;
-  if (state) newAddress["address.state"] = state;
-
-  await db.collection("usersDb").updateOne(
-    { email: session.user.email },
-    {
-      $set: newAddress,
-    }
-  );
-
-  client.close();
-  res.status(201).json({ message: "Address updated" });
+    await db.collection("usersDb").updateOne(
+      { email: session.user.email },
+      {
+        $set: newAddress,
+      }
+    );
+    res.status(201).json({ message: "Address updated" });
+  } catch (error) {
+    res.status(500).json({ message: error.message || "Something went wrong" });
+  } finally {
+    client.close();
+  }
 }

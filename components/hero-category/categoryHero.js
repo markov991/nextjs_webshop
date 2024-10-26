@@ -11,6 +11,7 @@ export default function CategoryHero() {
         alt="Picture with word DISCOUNT on it."
         src={discount}
         height={400}
+        priority
       />
       <div className={classes.callToActionBox}>
         <h2>

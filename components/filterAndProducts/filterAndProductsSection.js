@@ -7,11 +7,16 @@ export default function FilterAndProductsSection({
   products,
   category,
   loadMoreHandler,
+  noMoreItemsToLoad,
 }) {
   return (
     <section className={classes.filterAndProducts}>
       <FilterSection category={category} />
-      <ProductsSection loadMoreHandler={loadMoreHandler} products={products} />
+      <ProductsSection
+        loadMoreHandler={loadMoreHandler}
+        products={products}
+        noMoreItemsToLoad={noMoreItemsToLoad}
+      />
     </section>
   );
 }

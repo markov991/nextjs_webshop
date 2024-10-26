@@ -11,12 +11,7 @@ export default async function handler(req, res) {
   let client;
   try {
     client = await connectToDatabase();
-  } catch (error) {
-    res.status(500).json({ message: "connection to database failed" });
-    return;
-  }
 
-  try {
     const db = client.db();
     const wishlistItemDetails = await Promise.all(
       wishlistItems.map(async (productId) => {
@@ -30,6 +25,8 @@ export default async function handler(req, res) {
     );
     res.status(200).json({ productDetails: wishlistItemDetails });
   } catch (error) {
+    console.error("Order processing error:", error);
+    res.status(500).json({ status: "error", message: error.message });
   } finally {
     client.close();
   }

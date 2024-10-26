@@ -1,10 +1,23 @@
 import { connectToDatabase, getProductsFromCategory } from "@/lib/db";
 
 export default async function handler(req, res) {
-  const { category } = req.query;
-  const { page } = req.query;
-  const { colorFilter, priceFilter } = req.query;
-  const convertedPriceFilter = priceFilter.split(",");
+  if (req.method !== "GET") {
+    return res
+      .status(405)
+      .json({ status: "error", message: "Method Not Allowed" });
+  }
+  const { category, page, colorFilter, priceFilter } = req.query;
+
+  if (!category || !page || !priceFilter) {
+    return res
+      .status(400)
+      .json({ message: "Missing required query parameters" });
+  }
+
+  const convertedPriceFilter = priceFilter.split(",").map(Number);
+  if (convertedPriceFilter.some(isNaN)) {
+    return res.status(400).json({ message: "Invalid price filter values" });
+  }
 
   let client;
 
@@ -14,13 +27,16 @@ export default async function handler(req, res) {
     res.status(500).json({ message: "connection to database failed" });
     return;
   }
-
-  if (req.method === "GET") {
+  try {
     const allProducts = await getProductsFromCategory(client, page, category, {
       colorFilter: colorFilter,
-      priceFilter: [+convertedPriceFilter[0], +convertedPriceFilter[1]],
+      priceFilter: convertedPriceFilter,
     });
     res.status(200).json({ products: allProducts });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  } finally {
+    client && client.close();
   }
-  client.close();
 }

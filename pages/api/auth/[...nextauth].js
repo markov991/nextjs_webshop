@@ -13,29 +13,35 @@ export const authOptions = {
   providers: [
     Credentials({
       async authorize(credentials) {
-        const client = await connectToDatabase();
+        let client;
 
-        const usersCollection = client.db().collection("users");
+        try {
+          client = await connectToDatabase();
 
-        const user = await usersCollection.findOne({
-          email: credentials.email,
-        });
-        if (!user) {
-          client.close();
-          throw new Error("No user found");
+          const usersCollection = client.db().collection("users");
+
+          const user = await usersCollection.findOne({
+            email: credentials.email,
+          });
+          if (!user) {
+            throw new Error("No user found");
+          }
+
+          const isValid = await verifyPassword(
+            credentials.password,
+            user.password
+          );
+
+          if (!isValid) {
+            throw new Error("Could no log you in!");
+          }
+
+          return { email: user.email };
+        } finally {
+          if (client) {
+            client.close();
+          }
         }
-
-        const isValid = await verifyPassword(
-          credentials.password,
-          user.password
-        );
-
-        if (!isValid) {
-          client.close();
-          throw new Error("Could no log you in!");
-        }
-        client.close();
-        return { email: user.email };
       },
     }),
   ],

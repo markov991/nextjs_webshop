@@ -12,13 +12,7 @@ export default async function handler(req, res) {
 
   try {
     client = await connectToDatabase();
-  } catch (error) {
-    res.status(500).json({ message: "connection to database failed" });
-    return;
-  }
 
-  try {
-    // const db = client.db();
     if (req.method === "GET") {
       const { wishlist } = await client
         .db()
@@ -51,7 +45,8 @@ export default async function handler(req, res) {
       res.status(200).json({ message: "Update successfully" });
     }
   } catch (error) {
-    console.log(error);
+    console.error("Order processing error:", error);
+    res.status(500).json({ status: "error", message: error.message });
   } finally {
     client.close();
   }

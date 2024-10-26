@@ -58,6 +58,7 @@ export async function getStaticProps(context) {
   const client = await connectToDatabase();
   const productDetails = getProductDetails(client, productId);
   const { _id, ...data } = await productDetails;
+  client.close();
 
   return {
     props: {
