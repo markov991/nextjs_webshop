@@ -28,5 +28,5 @@ export async function getStaticProps(context) {
   const products = await getRandomProducts(client);
   const featuredProducts = products.map(({ _id, ...item }) => item);
   client.close();
-  return { props: { featuredProducts } };
+  return { props: { featuredProducts }, revalidate: 3600 };
 }

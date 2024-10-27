@@ -22,6 +22,9 @@ export default function CategoriesPage() {
           if (data.products.length < 15) {
             setNoMoreItemsToLoad(true);
           }
+          if (data.products.length === 15) {
+            setNoMoreItemsToLoad(false);
+          }
           setProducts([...data.products]);
         });
     }
@@ -38,6 +41,9 @@ export default function CategoriesPage() {
       .then((data) => {
         if (data.products.length < 15) {
           setNoMoreItemsToLoad(true);
+        }
+        if (data.products.length === 15) {
+          setNoMoreItemsToLoad(false);
         }
         setProducts([...products, ...data.products]);
       });

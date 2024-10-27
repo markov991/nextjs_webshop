@@ -21,8 +21,11 @@ export default function CategoriesPages() {
       )
         .then((response) => response.json())
         .then((data) => {
-          if (data.products.length < 15) {
+          if (data.products.length !== 15) {
             setNoMoreItemsToLoad(true);
+          }
+          if (data.products.length === 15) {
+            setNoMoreItemsToLoad(false);
           }
 
           setProducts([...data.products]);
@@ -41,6 +44,9 @@ export default function CategoriesPages() {
       .then((data) => {
         if (data.products.length < 15) {
           setNoMoreItemsToLoad(true);
+        }
+        if (data.products.length === 15) {
+          setNoMoreItemsToLoad(false);
         }
         setProducts([...products, ...data.products]);
       });
