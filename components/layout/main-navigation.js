@@ -19,10 +19,10 @@ export default function MainNavigation() {
         </nav>
       </div>
       <div>
-        <div className={classes.searchBox}>
+        {/* <div className={classes.searchBox}>
           <Image alt="search icon" src={search} />
           <input placeholder="Search for products" type=" text" />
-        </div>
+        </div> */}
         <IconsGroup />
       </div>
     </header>

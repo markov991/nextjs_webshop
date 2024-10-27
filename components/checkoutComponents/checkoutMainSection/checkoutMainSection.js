@@ -5,6 +5,7 @@ import Link from "next/link";
 import InputCouponBox from "@/components/couponBox/inputCouponBox";
 import AddressStageComponent from "../addressAndPayment/addressStageComponent";
 import PaymentStageComponent from "../addressAndPayment/paymentStageComponent";
+import LoadingSpinner from "@/components/UI/loadingSpinner";
 
 export default function CheckOutMainSection({
   cartItems,
@@ -128,7 +129,8 @@ export default function CheckOutMainSection({
 
   return (
     <main className={classes.main}>
-      {checkoutStage === "ITEMS" && (
+      {!items && <LoadingSpinner />}
+      {checkoutStage === "ITEMS" && items && (
         <section className={classes.productsSectionAndCouponContainer}>
           <div className={classes.productsSectionContainer}>
             <div className={classes.productInfoGrid}>

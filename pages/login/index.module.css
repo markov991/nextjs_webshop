@@ -1,11 +1,10 @@
 .logInContainer {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
-  /* width: 50%; */
   justify-content: center;
   margin-bottom: 5rem;
   margin-top: 10rem;
+  min-height: 50vh;
 }
 
 .twoGridCenter {
@@ -72,10 +71,10 @@
   font-size: 1.4rem;
 }
 .formContainer > button {
+  cursor: pointer;
   font-size: 1.6rem;
   padding: 1rem;
   width: 50%;
-
   color: #fff;
   background: #1b4b66;
   border: none;

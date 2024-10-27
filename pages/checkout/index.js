@@ -7,6 +7,8 @@ import { connectToDatabase, getUsersCart } from "@/lib/db";
 import CheckOutMainSection from "@/components/checkoutComponents/checkoutMainSection/checkoutMainSection";
 
 export default function CheckoutPage(props) {
+  const { userInfo, cart, session } = props;
+
   return (
     <>
       <div className={bcClasses.bredCrumbs}>
@@ -19,9 +21,9 @@ export default function CheckoutPage(props) {
       <h1 className={classes.heading}>My Cart</h1>
 
       <CheckOutMainSection
-        initialUserInfo={props.userInfo}
-        cartItems={props.cart}
-        session={props.session}
+        initialUserInfo={userInfo}
+        cartItems={cart}
+        session={session}
       />
     </>
   );

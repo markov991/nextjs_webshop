@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import classes from "./myWishlist.module.css";
 import Link from "next/link";
+import LoadingSpinner from "@/components/UI/loadingSpinner";
 
 export default function MyWishlist({ session }) {
   const [wishlistItems, setWishlistItems] = useState();
@@ -92,6 +93,7 @@ export default function MyWishlist({ session }) {
         <span></span>
       </div>
       <div className={classes.itemsContainer}>
+        {!wishlistItems && <LoadingSpinner />}
         {wishlistItems &&
           wishlistItems.map((item) => (
             <div key={item.productId} className={classes.itemContainer}>

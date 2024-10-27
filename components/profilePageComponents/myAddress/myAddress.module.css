@@ -40,6 +40,7 @@
   justify-self: end;
 }
 .sbmButton > button {
+  background: transparent;
   color: #1b4b66;
   font-weight: bold;
   cursor: pointer;

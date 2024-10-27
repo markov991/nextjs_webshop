@@ -16,7 +16,7 @@ export default function HeroSection() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
             efficitur augue vitae pretium rhoncus.
           </p>
-          <div>
+          <div className={classes.callToActionContainer}>
             <button>
               <Link href="/categories">&rarr; See more</Link>
             </button>
