@@ -1,62 +1,77 @@
 import Image from "next/image";
 import Link from "next/link";
 import classes from "./productItem.module.css";
-import wishlist from "@/public/wishlist.svg";
-import onWishlist from "@/public/onWishlist.svg";
+import wishlistIcon from "@/public/wishlist.svg";
+import onWishlistIcon from "@/public/onWishlist.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProductItem({ product, itemOnWishlist, session }) {
   const [isOnWishlist, setIsOnWishlist] = useState(itemOnWishlist);
-
+  const [isProcessing, setIsProcession] = useState(false);
   const toggleWishlistHandler = async () => {
-    setIsOnWishlist((prev) => !prev);
+    if (isProcessing) return;
 
+    setIsProcession(true);
     const wishlist = JSON.parse(localStorage.getItem("wishlist"));
-    if (isOnWishlist) {
-      if (session) {
-        const removingItem = await fetch(
-          `/api/wishlistHandler?user=${session.user.email}`,
-          {
-            method: "PATCH",
-            body: JSON.stringify({ itemToDelete: [`${product.productId}`] }),
-            headers: { "Content-Type": "application/json" },
+    try {
+      //Removing form wishlist
+      if (isOnWishlist) {
+        if (session) {
+          const removingItem = await fetch(
+            `/api/wishlistHandler?user=${session.user.email}`,
+            {
+              method: "PATCH",
+              body: JSON.stringify({ itemToDelete: [`${product.productId}`] }),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          if (!removingItem.ok) {
+            throw new Error("Failed to remove item.");
           }
-        );
-        if (!removingItem.ok) {
-          alert("Something went wrong!");
         }
+
+        localStorage.setItem(
+          "wishlist",
+          JSON.stringify({
+            items: wishlist.items.filter((item) => item != product.productId),
+          })
+        );
+        setIsOnWishlist(false);
       }
 
-      localStorage.setItem(
-        "wishlist",
-        JSON.stringify({
-          items: wishlist.items.filter((item) => item != product.productId),
-        })
-      );
-    }
-    if (!isOnWishlist) {
-      if (session) {
-        const addingItem = await fetch(
-          `/api/wishlistHandler?user=${session.user.email}`,
-          {
-            method: "PATCH",
-            body: JSON.stringify({ itemsToAdd: [`${product.productId}`] }),
-            headers: { "Content-Type": "application/json" },
+      //adding to the wishlist
+      if (!isOnWishlist) {
+        if (session) {
+          const addingItem = await fetch(
+            `/api/wishlistHandler?user=${session.user.email}`,
+            {
+              method: "PATCH",
+              body: JSON.stringify({ itemsToAdd: [`${product.productId}`] }),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          if (!addingItem.ok) {
+            throw new Error("Failed to add item.");
           }
-        );
-        if (!addingItem.ok) {
-          alert("Something went wrong!");
         }
+        localStorage.setItem(
+          "wishlist",
+          JSON.stringify({
+            items: [...new Set([...wishlist.items, product.productId])],
+          })
+        );
+        setIsOnWishlist(true);
       }
-      localStorage.setItem(
-        "wishlist",
-        JSON.stringify({
-          items: [...wishlist.items, product.productId],
-        })
-      );
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setIsProcession(false);
     }
   };
+  useEffect(() => {
+    setIsOnWishlist(itemOnWishlist);
+  }, [itemOnWishlist]);
 
   return (
     <div className={classes.productBox_Container}>
@@ -72,10 +87,10 @@ export default function ProductItem({ product, itemOnWishlist, session }) {
         <Link href={`/categories/${product.category}/${product.productId}`}>
           <h2>{product.name}</h2>
         </Link>
-        <button onClick={toggleWishlistHandler}>
+        <button onClick={toggleWishlistHandler} disabled={isProcessing}>
           <Image
             alt="wishlist icon"
-            src={isOnWishlist ? onWishlist : wishlist}
+            src={isOnWishlist ? onWishlistIcon : wishlistIcon}
           />
         </button>
       </div>
